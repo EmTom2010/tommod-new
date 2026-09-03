@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05020d">
 <title>TomModTaiWan</title>
 
 <style>
@@ -11,627 +10,592 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-    width:100%;
-    min-height:100%;
+:root{
+    --bg:#03070d;
+    --panel:rgba(8,18,30,.82);
+    --panel2:rgba(10,25,40,.72);
+    --line:rgba(0,174,255,.25);
+    --blue:#00b7ff;
+    --blue2:#0077ff;
+    --text:#f4f8ff;
+    --muted:#8295a8;
 }
 
 body{
     min-height:100vh;
-    overflow-x:hidden;
     font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-    background:#05020d;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 50% 0%,rgba(0,130,255,.18),transparent 35%),
+        radial-gradient(circle at 0% 60%,rgba(0,90,255,.10),transparent 30%),
+        #03070d;
+    overflow-x:hidden;
 }
 
-/* =========================
-   PURPLE NEON BACKGROUND
-========================= */
-
-.background{
+body:before{
+    content:"";
     position:fixed;
     inset:0;
-    z-index:-10;
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(174,48,255,.34),
-            transparent 29%
-        ),
-        radial-gradient(
-            circle at 0% 55%,
-            rgba(95,20,255,.28),
-            transparent 38%
-        ),
-        radial-gradient(
-            circle at 100% 82%,
-            rgba(215,45,255,.24),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #020106 0%,
-            #0c0318 48%,
-            #020106 100%
-        );
-}
-
-.background::before{
-    content:"";
-    position:absolute;
-    width:390px;
-    height:390px;
-    left:-145px;
-    top:-100px;
-    border-radius:50%;
-    background:#8d2cff;
-    filter:blur(115px);
-    opacity:.38;
-    animation:glowMove1 8s ease-in-out infinite alternate;
-}
-
-.background::after{
-    content:"";
-    position:absolute;
-    width:420px;
-    height:420px;
-    right:-160px;
-    bottom:-150px;
-    border-radius:50%;
-    background:#c63cff;
-    filter:blur(125px);
-    opacity:.28;
-    animation:glowMove2 10s ease-in-out infinite alternate;
-}
-
-@keyframes glowMove1{
-    from{
-        transform:translate(0,0) scale(1);
-    }
-    to{
-        transform:translate(80px,100px) scale(1.2);
-    }
-}
-
-@keyframes glowMove2{
-    from{
-        transform:translate(0,0) scale(1);
-    }
-    to{
-        transform:translate(-80px,-60px) scale(1.2);
-    }
-}
-
-/* =========================
-   PARTICLES
-========================= */
-
-.particles{
-    position:absolute;
-    inset:0;
-    opacity:.42;
-
+    pointer-events:none;
+    opacity:.25;
     background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.9) 1px,
-            transparent 1px
-        ),
-        radial-gradient(
-            circle,
-            rgba(190,70,255,.9) 1px,
-            transparent 1px
-        );
-
-    background-size:
-        85px 85px,
-        130px 130px;
-
-    background-position:
-        10px 20px,
-        60px 70px;
-
-    animation:particleMove 18s linear infinite;
+        linear-gradient(rgba(0,170,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,170,255,.035) 1px,transparent 1px);
+    background-size:45px 45px;
 }
 
-@keyframes particleMove{
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(-85px);
-    }
-}
-
-/* =========================
-   PAGE
-========================= */
-
-.page{
-    min-height:100vh;
+/* TOP */
+.topbar{
+    height:68px;
+    padding:0 22px;
     display:flex;
-    justify-content:center;
-    padding:48px 16px 50px;
+    align-items:center;
+    gap:18px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(2,7,13,.86);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
 }
 
-.card{
-    width:min(400px,100%);
+.logo{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:1px;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:var(--blue);
+}
+
+.search{
+    flex:1;
+    max-width:540px;
+    margin:auto;
+}
+
+.search input{
+    width:100%;
+    height:40px;
+    padding:0 18px;
+    color:white;
+    outline:none;
+    border:1px solid rgba(0,180,255,.25);
+    border-radius:12px;
+    background:rgba(10,22,35,.75);
+}
+
+.search input::placeholder{
+    color:#687d91;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.lang,.login{
+    padding:10px 14px;
+    border:1px solid rgba(0,180,255,.25);
+    border-radius:10px;
+    background:rgba(10,22,35,.7);
+    color:#dcecff;
+    font-size:13px;
+}
+
+.login{
+    color:white;
+    border-color:rgba(0,183,255,.55);
+}
+
+/* LAYOUT */
+.layout{
+    display:grid;
+    grid-template-columns:225px 1fr;
+    min-height:calc(100vh - 68px);
+}
+
+/* SIDEBAR */
+.sidebar{
+    padding:22px 14px;
+    border-right:1px solid var(--line);
+    background:rgba(2,8,14,.75);
+}
+
+.side-title{
+    padding:10px 12px;
+    color:#536a7d;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#91a5b8;
+    padding:13px 14px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav a:hover,
+.nav a.active{
+    color:white;
+    background:linear-gradient(90deg,rgba(0,157,255,.2),rgba(0,157,255,.04));
+    box-shadow:inset 3px 0 var(--blue),0 0 18px rgba(0,160,255,.08);
+}
+
+.nav-icon{
+    width:20px;
     text-align:center;
+    color:var(--blue);
 }
 
-/* =========================
-   AVATAR
-========================= */
+/* MAIN */
+.main{
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+    padding:28px;
+}
 
-.avatar-box{
+/* PROFILE */
+.profile{
     position:relative;
-    width:116px;
-    height:116px;
-    margin:0 auto 25px;
-}
-
-.avatar-box::before{
-    content:"";
-    position:absolute;
-    inset:-7px;
-    border-radius:50%;
-
+    overflow:hidden;
+    min-height:250px;
+    padding:30px;
+    border:1px solid var(--line);
+    border-radius:20px;
     background:
-        conic-gradient(
-            from 0deg,
-            #ffffff,
-            #d75cff,
-            #7025ff,
-            #b92cff,
-            #ffffff
-        );
-
-    box-shadow:
-        0 0 18px rgba(200,80,255,.95),
-        0 0 45px rgba(120,35,255,.8),
-        0 0 80px rgba(200,50,255,.3);
-
-    animation:avatarSpin 5s linear infinite;
+        radial-gradient(circle at 80% 20%,rgba(0,165,255,.16),transparent 30%),
+        linear-gradient(135deg,rgba(10,27,43,.95),rgba(4,10,17,.92));
+    box-shadow:0 0 35px rgba(0,130,255,.08);
 }
 
-.avatar-box::after{
+.profile:after{
     content:"";
     position:absolute;
-    inset:-16px;
+    width:300px;
+    height:300px;
+    right:-100px;
+    bottom:-180px;
     border-radius:50%;
-
-    border:1px solid rgba(215,100,255,.65);
-
-    box-shadow:
-        0 0 30px rgba(195,70,255,.55),
-        0 0 75px rgba(105,25,255,.35);
-
-    animation:ringPulse 2.5s ease-in-out infinite;
+    background:rgba(0,174,255,.13);
+    filter:blur(55px);
 }
 
-@keyframes avatarSpin{
-    to{
-        transform:rotate(360deg);
-    }
+.profile-content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
-@keyframes ringPulse{
-    0%,100%{
-        transform:scale(1);
-        opacity:.45;
-    }
-
-    50%{
-        transform:scale(1.08);
-        opacity:1;
-    }
+.avatar-wrap{
+    position:relative;
 }
 
 .avatar{
-    position:relative;
-    z-index:2;
-
-    width:116px;
-    height:116px;
-
-    display:block;
-    object-fit:cover;
-
+    width:120px;
+    height:120px;
     border-radius:50%;
-    border:3px solid #05020d;
+    object-fit:cover;
+    border:3px solid #0dbbff;
+    padding:4px;
+    background:#06111c;
+    box-shadow:
+        0 0 15px #00aaff,
+        0 0 45px rgba(0,160,255,.45);
 }
 
-/* =========================
-   NAME
-========================= */
-
-.name{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:7px;
-
-    font-size:31px;
-    line-height:1.1;
-    font-weight:800;
-    letter-spacing:-1px;
-
-    text-shadow:
-        0 0 8px rgba(255,255,255,.25),
-        0 0 18px rgba(190,70,255,.35),
-        0 3px 15px rgba(0,0,0,.9);
+.online{
+    position:absolute;
+    right:7px;
+    bottom:10px;
+    width:17px;
+    height:17px;
+    border-radius:50%;
+    background:#19e47d;
+    border:3px solid #06111c;
+    box-shadow:0 0 12px #19e47d;
 }
 
-.crown{
-    color:#d26aff;
-    font-size:22px;
-
-    text-shadow:
-        0 0 8px #c34cff,
-        0 0 20px #7b2cff;
+.profile-info h1{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:10px;
 }
 
 .verified{
-    width:24px;
-    height:24px;
-    flex:0 0 24px;
+    display:inline-flex;
+    width:20px;
+    height:20px;
+    align-items:center;
+    justify-content:center;
+    margin-left:7px;
+    border-radius:50%;
+    background:#168cff;
+    font-size:12px;
+    vertical-align:middle;
+    box-shadow:0 0 12px rgba(0,145,255,.7);
+}
 
+.username{
+    color:var(--blue);
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.quote{
+    color:#aebdca;
+    font-size:14px;
+}
+
+/* STATS */
+.stats{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.stat{
+    padding:20px;
+    border:1px solid rgba(0,180,255,.19);
+    border-radius:15px;
+    background:var(--panel);
+}
+
+.stat-number{
+    font-size:24px;
+    font-weight:900;
+    color:white;
+}
+
+.stat-label{
+    margin-top:6px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* SECTION */
+.section{
+    margin-top:25px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.section-head h2{
+    font-size:18px;
+}
+
+.section-head span{
+    color:#617588;
+    font-size:12px;
+}
+
+/* CATEGORIES */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    min-height:115px;
+    padding:18px;
+    border:1px solid rgba(0,180,255,.19);
+    border-radius:15px;
+    background:linear-gradient(145deg,rgba(10,26,42,.9),rgba(4,11,18,.9));
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(0,190,255,.7);
+    box-shadow:0 0 25px rgba(0,170,255,.13);
+}
+
+.card-icon{
+    width:38px;
+    height:38px;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    border-radius:50%;
-
-    background:#159fe8;
-
-    box-shadow:
-        0 0 10px rgba(20,190,255,.95),
-        0 0 22px rgba(20,130,255,.65);
+    border-radius:10px;
+    margin-bottom:15px;
+    color:var(--blue);
+    background:rgba(0,170,255,.1);
+    border:1px solid rgba(0,180,255,.25);
+    font-size:18px;
 }
 
-.verified::before{
-    content:"✓";
-    color:#fff;
-    font-size:15px;
-    font-weight:900;
+.card h3{
+    font-size:13px;
 }
 
-/* =========================
-   BIO
-========================= */
-
-.bio{
-    margin:13px 0 29px;
-
-    color:rgba(245,225,255,.9);
-
-    font-size:15px;
-
-    text-shadow:
-        0 0 9px rgba(185,60,255,.4);
+.card p{
+    margin-top:6px;
+    color:#64798b;
+    font-size:11px;
 }
 
-/* =========================
-   LINKS
-========================= */
+/* ACC CLONE */
+.acc{
+    position:relative;
+    overflow:hidden;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid rgba(0,190,255,.5);
+    background:
+        radial-gradient(circle at 90% 20%,rgba(0,170,255,.22),transparent 35%),
+        linear-gradient(120deg,rgba(7,28,45,.98),rgba(3,10,17,.98));
+    box-shadow:0 0 30px rgba(0,150,255,.08);
+}
 
+.acc-badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:7px;
+    background:rgba(0,175,255,.12);
+    border:1px solid rgba(0,190,255,.3);
+    color:#42c8ff;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.acc h2{
+    margin-top:13px;
+    font-size:25px;
+}
+
+.acc p{
+    max-width:650px;
+    margin-top:9px;
+    color:#8297a9;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.acc-button{
+    display:inline-block;
+    margin-top:18px;
+    padding:11px 18px;
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+    border-radius:9px;
+    background:linear-gradient(90deg,#008cff,#00bfff);
+    box-shadow:0 0 20px rgba(0,170,255,.3);
+}
+
+/* FIVE LINKS */
 .links{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
 }
 
 .link{
     position:relative;
-
-    height:70px;
-
     display:flex;
     align-items:center;
-    justify-content:center;
-
-    overflow:hidden;
-
-    color:#fff;
+    gap:11px;
+    padding:15px 14px;
+    color:white;
     text-decoration:none;
-
-    border:1px solid rgba(195,80,255,.9);
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            105deg,
-            rgba(30,7,55,.88),
-            rgba(120,35,195,.22),
-            rgba(12,4,30,.92)
-        );
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.62),
-        inset 0 1px 0 rgba(255,255,255,.16),
-        inset 0 0 28px rgba(165,50,255,.16),
-        0 0 18px rgba(160,45,255,.55),
-        0 0 42px rgba(100,25,255,.22);
-
-    font-size:18px;
-    font-weight:800;
-
-    letter-spacing:.2px;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        border-color .2s ease,
-        background .2s ease;
-}
-
-/* =========================
-   ICON
-========================= */
-
-.link .icon{
-    position:absolute;
-    left:15px;
-
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
     border-radius:14px;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(125,40,220,.55),
-            rgba(18,5,38,.9)
-        );
-
-    border:1px solid rgba(210,105,255,.85);
-
-    box-shadow:
-        0 0 15px rgba(175,60,255,.65),
-        0 0 30px rgba(100,25,255,.25),
-        inset 0 0 13px rgba(255,255,255,.08);
-
-    z-index:3;
+    border:1px solid rgba(0,180,255,.2);
+    background:rgba(8,20,32,.82);
+    transition:.28s;
 }
-
-.link .icon svg{
-    width:25px;
-    height:25px;
-
-    display:block;
-
-    filter:
-        drop-shadow(0 0 5px rgba(220,120,255,.9));
-}
-
-/* =========================
-   RIGHT ARROW
-========================= */
-
-.arrow{
-    position:absolute;
-
-    right:18px;
-
-    color:#ead0ff;
-
-    font-size:29px;
-    line-height:1;
-
-    text-shadow:
-        0 0 10px #b84cff,
-        0 0 24px #7b2cff;
-
-    animation:arrowGlow 1.8s ease-in-out infinite;
-}
-
-@keyframes arrowGlow{
-    0%,100%{
-        opacity:.55;
-        transform:translateX(0);
-    }
-
-    50%{
-        opacity:1;
-        transform:translateX(3px);
-    }
-}
-
-/* =========================
-   MOVING LIGHT
-========================= */
-
-.link::before{
-    content:"";
-
-    position:absolute;
-
-    top:-30%;
-    left:-100%;
-
-    width:60%;
-    height:160%;
-
-    transform:skewX(-25deg);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.25),
-            rgba(205,80,255,.38),
-            transparent
-        );
-
-    transition:left .65s ease;
-}
-
-.link:hover::before{
-    left:150%;
-}
-
-/* =========================
-   HOVER
-========================= */
 
 .link:hover{
-    transform:translateY(-3px) scale(1.01);
-
-    border-color:#e3a5ff;
-
-    background:
-        linear-gradient(
-            105deg,
-            rgba(75,18,125,.9),
-            rgba(170,55,255,.32),
-            rgba(35,8,80,.92)
-        );
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.55),
-        0 0 28px rgba(205,75,255,.8),
-        0 0 62px rgba(110,30,255,.32),
-        inset 0 0 30px rgba(185,65,255,.18);
+    transform:translateY(-4px);
+    border-color:#00b7ff;
+    box-shadow:0 0 25px rgba(0,175,255,.22);
 }
 
-/* =========================
-   TAP
-========================= */
-
-.link:active{
-    transform:scale(.95);
-
-    border-color:#fff;
-
-    box-shadow:
-        0 0 30px rgba(220,125,255,.98),
-        0 0 65px rgba(120,35,255,.65);
+.link-icon{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    font-weight:900;
+    font-size:16px;
+    color:#fff;
+    background:linear-gradient(145deg,#007eff,#00bfff);
+    box-shadow:0 0 15px rgba(0,170,255,.2);
 }
 
-/* =========================
-   INDIVIDUAL COLORS
-========================= */
-
-.link:nth-child(1){
-    border-color:rgba(180,70,255,.95);
+.link-name{
+    font-size:12px;
+    font-weight:bold;
 }
 
-.link:nth-child(2){
-    border-color:rgba(220,90,255,.95);
+.link-sub{
+    margin-top:4px;
+    font-size:9px;
+    color:#687e91;
 }
 
-.link:nth-child(3){
-    border-color:rgba(135,75,255,.95);
+.arrow{
+    margin-left:auto;
+    color:#00b7ff;
+    font-size:20px;
 }
 
-.link:nth-child(4){
-    border-color:rgba(190,60,255,.95);
+/* NOTIFICATION */
+.notice{
+    padding:22px;
+    border:1px solid rgba(0,180,255,.17);
+    border-radius:15px;
+    background:var(--panel);
 }
 
-.link:nth-child(5){
-    border-color:rgba(225,120,255,.95);
+.notice-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:#7c90a2;
+    font-size:13px;
 }
 
-/* =========================
-   BOTTOM LINE
-========================= */
-
-.line{
-    width:58px;
-    height:3px;
-
-    margin:26px auto 0;
-
-    border-radius:20px;
-
-    background:#b84cff;
-
-    box-shadow:
-        0 0 8px #d05cff,
-        0 0 20px #8b2cff,
-        0 0 35px rgba(190,70,255,.6);
-
-    animation:lineGlow 2s ease-in-out infinite;
+.notice-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    color:#00b7ff;
+    background:rgba(0,180,255,.1);
 }
 
-@keyframes lineGlow{
-    0%,100%{
-        width:35px;
-        opacity:.5;
+/* FOOTER */
+footer{
+    margin-top:30px;
+    padding:25px 0 10px;
+    text-align:center;
+    color:#506273;
+    font-size:11px;
+}
+
+/* MOBILE */
+@media(max-width:1050px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    50%{
-        width:70px;
-        opacity:1;
+    .links{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:390px){
-
-    .page{
-        padding-top:43px;
+@media(max-width:760px){
+    .topbar{
+        padding:0 12px;
+        gap:8px;
     }
 
-    .avatar-box,
-    .avatar{
-        width:105px;
-        height:105px;
+    .logo{
+        font-size:15px;
     }
 
-    .name{
-        font-size:28px;
+    .search{
+        display:none;
     }
 
-    .verified{
-        width:21px;
-        height:21px;
-        flex-basis:21px;
+    .lang{
+        display:none;
     }
 
-    .verified::before{
-        font-size:14px;
+    .layout{
+        display:block;
     }
 
-    .bio{
-        font-size:14px;
-        margin-bottom:25px;
+    .sidebar{
+        display:none;
     }
 
-    .link{
-        height:63px;
-        border-radius:18px;
-        font-size:17px;
+    .main{
+        padding:14px;
     }
 
-    .link .icon{
-        left:14px;
-        width:36px;
-        height:36px;
+    .profile{
+        padding:22px 18px;
     }
 
-    .link .icon svg{
-        width:22px;
-        height:22px;
+    .profile-content{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .profile-info h1{
+        font-size:26px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .links{
+        grid-template-columns:1fr;
+    }
+
+    .acc h2{
+        font-size:21px;
+    }
+}
+
+@media(max-width:420px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile{
+        border-radius:16px;
+    }
+
+    .stats{
+        gap:9px;
+    }
+
+    .stat{
+        padding:15px;
     }
 }
 </style>
@@ -639,157 +603,305 @@ body{
 
 <body>
 
-<div class="background">
-    <div class="particles"></div>
-</div>
+<header class="topbar">
+    <div class="logo">TOM<span>MOD</span></div>
 
-<main class="page">
-
-<section class="card">
-
-    <div class="avatar-box">
-        <img
-            class="avatar"
-            src="avatar.png"
-            alt="TomModTaiWan">
+    <div class="search">
+        <input type="text" placeholder="Tìm kiếm...">
     </div>
 
-    <h1 class="name">
-        <span>TomModTaiWan</span>
-        <span class="crown">♛</span>
-        <span class="verified"></span>
-    </h1>
+    <div class="top-right">
+        <div class="lang">VI ▾</div>
+        <div class="login">Đăng nhập</div>
+    </div>
+</header>
 
-    <p class="bio">
-        TomModTaiWan. Xin Kính Chào Bạn.
-    </p>
+<div class="layout">
 
-    <div class="links">
+<aside class="sidebar">
 
-        <!-- FACEBOOK -->
-        <a
-            class="link"
-            href="https://www.facebook.com/share/1cQg31DP2L/"
-            target="_blank"
-            rel="noopener">
+    <div class="side-title">Menu</div>
 
-            <span class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                    d="M14 8h3V4.5c-.52-.07-1.92-.18-3.65-.18-3.61 0-6.08 2.2-6.08 6.24V14H3.5v4h3.77v6h4.62v-6h3.84l.61-4h-4.45v-3.08c0-1.16.31-1.92 2.11-1.92Z"/>
-                </svg>
-            </span>
-
-            Facebook
-
-            <span class="arrow">››</span>
+    <nav class="nav">
+        <a href="#" class="active">
+            <span class="nav-icon">⌂</span>
+            Trang chủ
         </a>
 
-        <!-- TIKTOK -->
-        <a
-            class="link"
-            href="https://www.tiktok.com/@tluocc_010"
-            target="_blank"
-            rel="noopener">
-
-            <span class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                    d="M15.6 3c.45 2.62 1.91 4.2 4.4 4.37v3.23c-1.44.14-2.8-.33-4.36-1.24v6.28c0 4.52-4.91 6.1-7.84 3.53-1.88-1.65-1.95-4.78-.2-6.55 1.58-1.6 3.94-1.98 5.75-.97v3.29c-1.88-1.27-3.67-.39-3.66 1.25.01 1.75 3.1 2.2 3.1-.37V3h2.81Z"/>
-                </svg>
-            </span>
-
-            TikTok
-
-            <span class="arrow">››</span>
+        <a href="#categories">
+            <span class="nav-icon">▦</span>
+            Danh mục
         </a>
 
-        <!-- DISCORD -->
-        <a
-            class="link"
-            href="https://discord.gg/xhc"
-            target="_blank"
-            rel="noopener">
-
-            <span class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                    d="M19.5 5.2A16.1 16.1 0 0 0 15.6 4l-.48.98a14.5 14.5 0 0 0-6.24 0L8.4 4a16.1 16.1 0 0 0-3.9 1.2C2.03 8.23 1.35 11.2 1.69 14.13a15.8 15.8 0 0 0 4.77 2.4l1.15-1.58c-.63-.23-1.24-.53-1.8-.87l.44-.34c3.48 1.63 7.26 1.63 10.7 0l.45.34c-.57.35-1.17.64-1.81.88l1.15 1.57a15.8 15.8 0 0 0 4.77-2.4c.4-3.39-.68-6.33-2.01-8.93ZM8.47 13.4c-1.03 0-1.88-.95-1.88-2.12s.83-2.13 1.88-2.13 1.89.96 1.88 2.13c0 1.17-.83 2.12-1.88 2.12Zm7.06 0c-1.03 0-1.88-.95-1.88-2.12s.83-2.13 1.88-2.13 1.89.96 1.88 2.13c0 1.17-.83 2.12-1.88 2.12Z"/>
-                </svg>
-            </span>
-
-            Discord
-
-            <span class="arrow">››</span>
+        <a href="#links">
+            <span class="nav-icon">♡</span>
+            Yêu thích
         </a>
 
-        <!-- TELEGRAM -->
-        <a
-            class="link"
-            href="https://t.me/tluoc_09"
-            target="_blank"
-            rel="noopener">
-
-            <span class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                    d="M21.5 4.7 18.3 19.8c-.24 1.07-.87 1.33-1.77.83l-4.9-3.61-2.36 2.27c-.26.26-.48.48-.99.48l.35-4.99 9.08-8.2c.4-.35-.09-.55-.62-.2L6.02 13.45 1.2 11.94c-1.05-.33-1.07-1.05.22-1.55L20.27 3c.88-.33 1.65.2 1.23 1.7Z"/>
-                </svg>
-            </span>
-
-            Telegram
-
-            <span class="arrow">››</span>
+        <a href="#notice">
+            <span class="nav-icon">♢</span>
+            Thông báo
         </a>
 
-        <!-- LINK BIO -->
-        <a
-            class="link"
-            href="https://linkbio.co/8070700OwKBiF"
-            target="_blank"
-            rel="noopener">
-
-            <span class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                    d="M10.6 13.4a1.5 1.5 0 0 1 0-2.12l2.68-2.68a3 3 0 0 1 4.24 4.24l-1.59 1.59a1.5 1.5 0 1 1-2.12-2.12l1.59-1.59a0 0 0 0 0-1.12 0l-2.68 2.68a1.5 1.5 0 0 1-2.12 0Zm2.8-2.8a1.5 1.5 0 0 1 0 2.12l-2.68 2.68a3 3 0 1 1-4.24-4.24l1.59-1.59a1.5 1.5 0 1 1 2.12 2.12l-1.59 1.59a0 0 0 0 0 1.12 0l2.68-2.68a1.5 1.5 0 0 1 2.12 0Z"/>
-                </svg>
-            </span>
-
-            Link Bio
-
-            <span class="arrow">››</span>
+        <a href="#profile">
+            <span class="nav-icon">♙</span>
+            Tài khoản
         </a>
+    </nav>
+
+</aside>
+
+<main class="main">
+
+<!-- PROFILE -->
+<section class="profile" id="profile">
+
+    <div class="profile-content">
+
+        <div class="avatar-wrap">
+            <img src="avatar.png" class="avatar" alt="TomModTaiWan">
+            <span class="online"></span>
+        </div>
+
+        <div class="profile-info">
+            <h1>
+                TomModTaiWan
+                <span class="verified">✓</span>
+            </h1>
+
+            <div class="username">@TomModTaiWan • Online</div>
+
+            <div class="quote">
+                TomModTaiWan. Xin Kính Chào Bạn.
+            </div>
+        </div>
 
     </div>
-
-    <div class="line"></div>
 
 </section>
 
+<!-- STATS -->
+<section class="stats">
+
+    <div class="stat">
+        <div class="stat-number">1.2K</div>
+        <div class="stat-label">Người theo dõi</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number">128</div>
+        <div class="stat-label">Đang theo dõi</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number">8.5K</div>
+        <div class="stat-label">Lượt xem</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number">●</div>
+        <div class="stat-label">Đang hoạt động</div>
+    </div>
+
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+
+    <div class="section-head">
+        <h2>Danh mục</h2>
+        <span>Xem tất cả →</span>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>FAKE LAG MOBILE</h3>
+            <p>Tiện ích Mobile</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"></div>
+            <h3>MENU IOS</h3>
+            <p>Tiện ích iOS</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">▣</div>
+            <h3>MÁY ẢO</h3>
+            <p>Cloud / Virtual</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">♙</div>
+            <h3>ACC CLONE FF</h3>
+            <p>Free Fire</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">⌖</div>
+            <h3>FILE ĐỊNH VỊ FREE FIRE</h3>
+            <p>File hỗ trợ</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">✦</div>
+            <h3>MOD SKIN FF</h3>
+            <p>Free Fire</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">▤</div>
+            <h3>PANEL PC</h3>
+            <p>Windows / PC</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">＋</div>
+            <h3>KHÁC</h3>
+            <p>Cập nhật sau</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ACC CLONE FF -->
+<section class="section">
+
+    <div class="acc">
+
+        <span class="acc-badge">FREE FIRE</span>
+
+        <h2>ACC CLONE FF</h2>
+
+        <p>
+            Tổng hợp ACC CLONE FF với giao diện gọn gàng,
+            thông tin rõ ràng và cập nhật nhanh.
+            Khám phá danh mục tài khoản Free Fire tại đây.
+        </p>
+
+        <a href="#links" class="acc-button">
+            Xem ACC CLONE FF →
+        </a>
+
+    </div>
+
+</section>
+
+<!-- 5 LINKS -->
+<section class="section" id="links">
+
+    <div class="section-head">
+        <h2>Liên kết của tôi</h2>
+        <span>Follow me</span>
+    </div>
+
+    <div class="links">
+
+        <a class="link"
+           href="https://www.facebook.com/share/1cQg31DP2L/"
+           target="_blank">
+
+            <div class="link-icon">f</div>
+
+            <div>
+                <div class="link-name">Facebook</div>
+                <div class="link-sub">Theo dõi Facebook</div>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+
+        <a class="link"
+           href="https://www.tiktok.com/@tluocc_010"
+           target="_blank">
+
+            <div class="link-icon">♪</div>
+
+            <div>
+                <div class="link-name">TikTok</div>
+                <div class="link-sub">Follow TikTok</div>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+
+        <a class="link"
+           href="https://discord.gg/xhc"
+           target="_blank">
+
+            <div class="link-icon">◉</div>
+
+            <div>
+                <div class="link-name">Discord</div>
+                <div class="link-sub">Tham gia Discord</div>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+
+        <a class="link"
+           href="https://t.me/tluoc_09"
+           target="_blank">
+
+            <div class="link-icon">➤</div>
+
+            <div>
+                <div class="link-name">Telegram</div>
+                <div class="link-sub">Kênh Telegram</div>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+
+        <a class="link"
+           href="https://linkbio.co/8070700OwKBiF"
+           target="_blank">
+
+            <div class="link-icon">↗</div>
+
+            <div>
+                <div class="link-name">Link Bio</div>
+                <div class="link-sub">Tất cả liên kết</div>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- NOTICE -->
+<section class="section" id="notice">
+
+    <div class="section-head">
+        <h2>Thông báo hệ thống</h2>
+    </div>
+
+    <div class="notice">
+
+        <div class="notice-row">
+            <div class="notice-icon">✓</div>
+            <span>Hiện tại không có thông báo mới.</span>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 TomModTaiWan • All Rights Reserved
+</footer>
+
 </main>
-
-<audio id="music" loop preload="auto">
-    <source src="tiktok_mp3.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const music = document.getElementById("music");
-
-music.volume = 0.55;
-
-window.addEventListener("load",()=>{
-    music.play().catch(()=>{});
-});
-
-document.addEventListener(
-    "pointerdown",
-    ()=>{
-        music.play().catch(()=>{});
-    },
-    {once:true}
-);
-</script>
+</div>
 
 </body>
     </html>
