@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mod Skin FF</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#050008;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:430px;
+    padding:24px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#0b0012,#17001f);
+    border:1px solid #a000ff;
+    box-shadow:0 0 28px #8b00ff55;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#09000d;
+    border:2px solid #c000ff;
+    box-shadow:0 0 22px #a000ff;
+    font-size:25px;
+    font-weight:bold;
+    color:#d000ff;
+}
+
+h1{
+    margin-top:15px;
+    font-size:25px;
+    color:#d000ff;
+    text-shadow:0 0 12px #a000ff;
+}
+
+.subtitle{
+    margin-top:7px;
+    color:#999;
+    font-size:13px;
+}
+
+.status{
+    text-align:center;
+    padding:13px;
+    margin-bottom:15px;
+    border-radius:13px;
+    background:#09000e;
+    border:1px solid #5d0085;
+    color:#aaa;
+}
+
+.status span{
+    color:#c000ff;
+    font-weight:bold;
+}
+
+.option{
+    margin-top:12px;
+    padding:15px;
+    border-radius:14px;
+    background:#08000d;
+    border:1px solid #43005f;
+}
+
+.option label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:15px;
+}
+
+.switch{
+    position:relative;
+    width:48px;
+    height:25px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    cursor:pointer;
+    border-radius:30px;
+    background:#26002f;
+    transition:.3s;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    width:19px;
+    height:19px;
+    left:3px;
+    top:3px;
+    border-radius:50%;
+    background:#aaa;
+    transition:.3s;
+}
+
+input:checked + .slider{
+    background:#9000ff;
+    box-shadow:0 0 13px #a000ff;
+}
+
+input:checked + .slider:before{
+    transform:translateX(23px);
+    background:#fff;
+}
+
+.btn{
+    width:100%;
+    margin-top:22px;
+    padding:15px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(90deg,#7200ff,#c000ff);
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px #9d00ff66;
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.info{
+    margin-top:18px;
+    padding:13px;
+    border-radius:12px;
+    background:#0a000f;
+    border-left:3px solid #a000ff;
+    color:#aaa;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.footer{
+    text-align:center;
+    margin-top:18px;
+    color:#666;
+    font-size:11px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">SK</div>
+
+        <h1>MOD SKIN FF</h1>
+
+        <div class="subtitle">
+            Free Fire Skin Collection
+        </div>
+
+    </div>
+
+    <div class="status">
+        Trạng thái:
+        <span id="status">ĐANG TẮT</span>
+    </div>
+
+    <div class="option">
+        <label>
+            Mod Skin
+            <span class="switch">
+                <input type="checkbox" id="skin">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <div class="option">
+        <label>
+            Skin Súng
+            <span class="switch">
+                <input type="checkbox" id="gun">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <div class="option">
+        <label>
+            Skin Nhân Vật
+            <span class="switch">
+                <input type="checkbox" id="character">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <button class="btn" onclick="activate()">
+        KÍCH HOẠT
+    </button>
+
+    <div class="info">
+        ⚡ MOD SKIN FF<br>
+        Kho riêng dành cho các file Mod Skin Free Fire.<br>
+        Tách biệt với các kho khác.
+    </div>
+
+    <div class="footer">
+        © TomModTaiWan
+    </div>
+
+</div>
+
+<script>
+function activate(){
+
+    const skin =
+        document.getElementById("skin").checked;
+
+    const gun =
+        document.getElementById("gun").checked;
+
+    const character =
+        document.getElementById("character").checked;
+
+    const status =
+        document.getElementById("status");
+
+    if(skin || gun || character){
+
+        status.innerText = "ĐÃ BẬT";
+        status.style.color = "#d000ff";
+
+    }else{
+
+        status.innerText = "ĐANG TẮT";
+        status.style.color = "#c000ff";
+
+    }
+}
+</script>
+
+</body>
+</html>
