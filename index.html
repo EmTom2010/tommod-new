@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050507">
+
 <title>TomModTaiWan</title>
 
 <style>
@@ -10,1158 +12,919 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-:root{
-    --bg:#08090d;
-    --bg2:#0b0d12;
-    --card:#101217;
-    --card2:#0d0f14;
-    --border:#20242d;
-    --border2:#292d38;
-
-    --purple:#756cff;
-    --purple2:#6258e8;
-    --blue:#318cff;
-
-    --white:#f5f5f7;
-    --text:#e8e9ed;
-    --muted:#777c88;
-}
-
-html{
-    scroll-behavior:smooth;
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
     min-height:100vh;
-    color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(88,78,210,.13),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 100% 45%,
-            rgba(55,72,170,.06),
-            transparent 30%
-        ),
-        var(--bg);
     overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    background:#050507;
 }
 
-/* subtle background */
-body::before{
-    content:"";
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
     position:fixed;
     inset:0;
-    pointer-events:none;
+    z-index:-10;
+    overflow:hidden;
+
     background:
         radial-gradient(
-            circle at 25% 30%,
-            rgba(89,78,220,.035),
-            transparent 25%
+            circle at 50% 10%,
+            rgba(139,92,255,.18),
+            transparent 28%
         ),
         radial-gradient(
-            circle at 75% 75%,
-            rgba(60,70,160,.025),
-            transparent 25%
+            circle at 0% 70%,
+            rgba(112,55,220,.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 100% 85%,
+            rgba(181,108,255,.10),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #020204 0%,
+            #08070d 50%,
+            #030304 100%
         );
 }
 
-/* ================= TOP ================= */
+.background::before{
+    content:"";
+    position:absolute;
 
-.topbar{
-    height:72px;
-    padding:0 28px;
+    width:330px;
+    height:330px;
+
+    left:-120px;
+    top:-100px;
+
+    border-radius:50%;
+
+    background:#7c45ff;
+    filter:blur(110px);
+
+    opacity:.20;
+
+    animation:glow1 9s ease-in-out infinite alternate;
+}
+
+.background::after{
+    content:"";
+    position:absolute;
+
+    width:360px;
+    height:360px;
+
+    right:-140px;
+    bottom:-120px;
+
+    border-radius:50%;
+
+    background:#b25cff;
+    filter:blur(120px);
+
+    opacity:.13;
+
+    animation:glow2 11s ease-in-out infinite alternate;
+}
+
+@keyframes glow1{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(90px,100px) scale(1.2);
+    }
+}
+
+@keyframes glow2{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(-80px,-70px) scale(1.2);
+    }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+
+    opacity:.20;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.8) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle,
+            rgba(150,90,255,.8) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        100px 100px,
+        145px 145px;
+
+    background-position:
+        10px 20px,
+        60px 70px;
+
+    animation:particles 20s linear infinite;
+}
+
+@keyframes particles{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-100px);
+    }
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    width:100%;
+    max-width:720px;
+
+    margin:auto;
+
+    padding:24px 16px 50px;
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.brand{
     display:flex;
     align-items:center;
-    background:rgba(7,8,11,.96);
-    border-bottom:1px solid #181b22;
-    position:sticky;
-    top:0;
-    z-index:100;
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+    padding:4px 2px;
 }
 
 .logo{
     font-size:21px;
     font-weight:900;
-    letter-spacing:1px;
+    letter-spacing:.5px;
 }
 
 .logo span{
-    color:#4e8cff;
+    color:#965cff;
+    text-shadow:
+        0 0 8px rgba(150,92,255,.7),
+        0 0 20px rgba(150,92,255,.3);
 }
 
-/* không còn nút đăng nhập */
+/* =========================
+   GLASS CARD
+========================= */
 
-/* ================= LAYOUT ================= */
-
-.layout{
-    display:grid;
-    grid-template-columns:230px minmax(0,1fr);
-    min-height:calc(100vh - 72px);
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-    padding:25px 15px;
-    background:#090a0e;
-    border-right:1px solid #181b22;
-}
-
-.side-title{
-    padding:10px 13px;
-    margin-bottom:8px;
-    color:#555b67;
-    font-size:10px;
-    font-weight:bold;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-.nav{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
-
-.nav a{
-    text-decoration:none;
-    color:#858a95;
-    display:flex;
-    align-items:center;
-    gap:13px;
-    padding:13px 14px;
-    border-radius:10px;
-    font-size:14px;
-    transition:.25s;
-}
-
-.nav a:hover{
-    color:#fff;
-    background:#11131a;
-}
-
-.nav a.active{
-    color:#fff;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(103,93,235,.16),
-            rgba(103,93,235,.035)
-        );
-    border:1px solid rgba(111,102,238,.16);
-}
-
-.nav-icon{
-    width:20px;
-    text-align:center;
-    color:#7770ff;
-    font-size:17px;
-}
-
-/* ================= MAIN ================= */
-
-.main{
-    width:100%;
-    max-width:1350px;
-    margin:auto;
-    padding:28px;
-}
-
-/* ================= PROFILE ================= */
-
-.profile{
+.card{
     position:relative;
-    overflow:hidden;
-    min-height:255px;
-    padding:35px;
-    border-radius:22px;
-    border:1px solid #252a34;
 
     background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(92,82,220,.10),
-            transparent 32%
-        ),
         linear-gradient(
             145deg,
-            #101319,
-            #0b0d11
+            rgba(18,17,24,.95),
+            rgba(7,7,11,.95)
         );
 
+    border:1px solid rgba(255,255,255,.07);
+
     box-shadow:
-        0 20px 60px rgba(0,0,0,.25);
+        0 18px 60px rgba(0,0,0,.55),
+        0 0 35px rgba(139,92,255,.05);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 }
 
-.profile::after{
+/* =========================
+   PROFILE
+========================= */
+
+.profile{
+    text-align:center;
+
+    padding:30px 18px 25px;
+
+    border-radius:26px;
+
+    overflow:hidden;
+}
+
+.profile::before{
     content:"";
+
     position:absolute;
-    width:300px;
-    height:300px;
-    right:-160px;
-    bottom:-190px;
-    background:rgba(91,82,220,.08);
-    filter:blur(80px);
-    border-radius:50%;
+
+    width:260px;
+    height:180px;
+
+    left:50%;
+    top:-120px;
+
+    transform:translateX(-50%);
+
+    background:#8b5cff;
+
+    filter:blur(90px);
+
+    opacity:.15;
 }
 
-.profile-content{
+/* =========================
+   AVATAR
+========================= */
+
+.avatar-box{
     position:relative;
-    z-index:2;
+
+    width:120px;
+    height:120px;
+
+    margin:0 auto 18px;
+
     display:flex;
     align-items:center;
-    gap:27px;
-}
-
-/* avatar */
-
-.avatar-wrap{
-    position:relative;
-    flex-shrink:0;
+    justify-content:center;
 }
 
 .avatar{
-    width:125px;
-    height:125px;
+    width:106px;
+    height:106px;
+
     object-fit:cover;
+
     border-radius:50%;
 
-    padding:5px;
-
-    border:3px solid #7168ff;
-
-    background:#090a0e;
+    border:3px solid #8555ff;
 
     box-shadow:
-        0 0 0 4px #151721,
-        0 0 20px rgba(105,95,255,.55),
-        0 0 45px rgba(82,73,220,.20);
+        0 0 10px #8555ff,
+        0 0 25px rgba(133,85,255,.75),
+        0 0 55px rgba(133,85,255,.25);
 }
 
 .online{
     position:absolute;
-    right:3px;
-    bottom:6px;
 
-    width:21px;
-    height:21px;
+    width:23px;
+    height:23px;
+
+    right:4px;
+    bottom:7px;
 
     border-radius:50%;
 
-    background:#22df83;
+    background:#31e58a;
 
-    border:4px solid #101217;
+    border:4px solid #0a0a0f;
 
     box-shadow:
-        0 0 10px rgba(34,223,131,.55);
+        0 0 10px #31e58a,
+        0 0 22px rgba(49,229,138,.65);
 }
 
-/* profile text */
+/* =========================
+   NAME
+========================= */
 
-.profile-info h1{
-    font-size:35px;
-    line-height:1;
-    color:#f5f5f7;
-    margin-bottom:13px;
+.name{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    font-size:30px;
+    font-weight:900;
+
+    letter-spacing:-.7px;
 }
 
 .verified{
-    display:inline-flex;
-    width:21px;
-    height:21px;
+    width:23px;
+    height:23px;
 
+    display:flex;
     align-items:center;
     justify-content:center;
-
-    margin-left:7px;
 
     border-radius:50%;
 
-    background:#318cff;
+    background:#8654ff;
+
     color:#fff;
 
-    font-size:13px;
-    vertical-align:middle;
+    font-size:14px;
+    font-weight:900;
 
     box-shadow:
-        0 0 12px rgba(49,140,255,.35);
+        0 0 10px rgba(134,84,255,.9),
+        0 0 22px rgba(134,84,255,.45);
 }
 
-.username{
-    color:#6f8dff;
+.handle{
+    margin-top:8px;
+
+    color:#a88cff;
+
     font-size:15px;
-    margin-bottom:14px;
+    font-weight:700;
 }
 
-.quote{
-    color:#999da8;
+.bio{
+    margin-top:13px;
+
+    color:#96919f;
+
     font-size:15px;
 }
 
-/* ================= STATS ================= */
+/* =========================
+   STATS
+========================= */
 
 .stats{
-    margin-top:20px;
-
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:11px;
+
+    margin-top:16px;
 }
 
 .stat{
-    min-height:112px;
-    padding:21px 25px;
+    padding:20px 14px;
 
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #101217,
-            #0c0e13
-        );
-
-    border:1px solid #20252e;
-
-    transition:.25s;
+    border-radius:19px;
 }
 
-.stat:hover{
-    border-color:#303547;
-    transform:translateY(-2px);
-}
-
-.stat-number{
-    font-size:27px;
+.number{
+    font-size:24px;
     font-weight:900;
-    color:#f4f4f6;
+
+    color:#fff;
 }
 
-.stat-label{
-    margin-top:8px;
-    font-size:14px;
-    color:#747985;
+.label{
+    margin-top:7px;
+
+    color:#77727f;
+
+    font-size:12px;
 }
 
-/* ================= SECTION ================= */
+/* =========================
+   SECTION TITLE
+========================= */
 
-.section{
-    margin-top:28px;
-}
-
-.section-head{
+.section-title{
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+    justify-content:space-between;
 
-    margin-bottom:15px;
+    margin:27px 2px 13px;
 }
 
-.section-head h2{
-    font-size:21px;
-    color:#f0f1f4;
+.section-title h2{
+    font-size:25px;
+    font-weight:900;
 }
 
-.section-head span{
-    color:#696f7c;
+.section-title span{
+    color:#77727f;
     font-size:13px;
 }
 
-/* ================= CATEGORIES ================= */
+/* =========================
+   CATEGORY
+========================= */
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:14px;
+.categories{
+    display:flex;
+    flex-direction:column;
+
+    gap:12px;
 }
 
-.card{
-    min-height:125px;
+.category{
+    position:relative;
+
+    display:block;
 
     padding:20px;
 
-    border-radius:16px;
+    border-radius:21px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #101217,
-            #0c0e12
-        );
+    overflow:hidden;
 
-    border:1px solid #20242d;
-
-    transition:.25s;
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
 
-.card:hover{
+.category::after{
+    content:"→";
+
+    position:absolute;
+
+    right:20px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:24px;
+
+    color:#8f5cff;
+
+    text-shadow:
+        0 0 10px rgba(143,92,255,.8);
+
+    transition:.2s;
+}
+
+.category:hover{
     transform:translateY(-3px);
-    border-color:#3a3b59;
+
+    border-color:rgba(145,88,255,.55);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.25);
+        0 12px 35px rgba(0,0,0,.55),
+        0 0 25px rgba(139,92,255,.12);
 }
 
-.card-icon{
-    width:40px;
-    height:40px;
+.category:hover::after{
+    right:15px;
+}
+
+.icon{
+    width:45px;
+    height:45px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    margin-bottom:18px;
+    margin-bottom:14px;
 
-    border-radius:10px;
-
-    background:#151625;
-    border:1px solid #292b45;
-
-    color:#7770ff;
-
-    font-size:18px;
-}
-
-.card h3{
-    font-size:14px;
-    color:#e5e6e9;
-}
-
-.card p{
-    margin-top:7px;
-    color:#666b76;
-    font-size:12px;
-}
-
-/* ================= ACC CLONE ================= */
-
-.acc{
-    position:relative;
-    overflow:hidden;
-
-    padding:27px;
-
-    border-radius:17px;
-
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(94,83,235,.10),
-            transparent 30%
-        ),
-        #101217;
-
-    border:1px solid #292d38;
-}
-
-.acc-badge{
-    display:inline-block;
-
-    padding:6px 10px;
-
-    border-radius:7px;
-
-    color:#8179ff;
-
-    background:#17182a;
-    border:1px solid #2c2d4b;
-
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-.acc h2{
-    margin-top:14px;
-
-    font-size:25px;
-    color:#f3f3f5;
-}
-
-.acc p{
-    max-width:700px;
-
-    margin-top:9px;
-
-    color:#777c87;
-
-    font-size:13px;
-    line-height:1.7;
-}
-
-.acc-button{
-    display:inline-block;
-
-    margin-top:19px;
-    padding:11px 18px;
-
-    text-decoration:none;
-
-    color:#fff;
-
-    font-size:13px;
-    font-weight:bold;
-
-    border-radius:9px;
+    border-radius:13px;
 
     background:
         linear-gradient(
             135deg,
-            #6258df,
-            #766cff
+            rgba(139,92,255,.18),
+            rgba(139,92,255,.05)
         );
 
-    box-shadow:
-        0 5px 20px rgba(98,88,223,.20);
-}
-
-/* ================= 5 LINKS ================= */
-
-.links{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:13px;
-}
-
-.link{
-    min-height:76px;
-
-    display:flex;
-    align-items:center;
-
-    gap:12px;
-
-    padding:13px;
-
-    text-decoration:none;
-    color:#fff;
-
-    border-radius:14px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111318,
-            #0c0e12
-        );
-
-    border:1px solid #222630;
-
-    transition:.25s;
-}
-
-.link:hover{
-    transform:translateY(-3px);
-
-    border-color:#5552a0;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.35);
-}
-
-.link-icon{
-    width:42px;
-    height:42px;
-
-    flex-shrink:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:11px;
-
-    color:#eee;
-
-    background:
-        linear-gradient(
-            145deg,
-            #1b1c2a,
-            #11121a
-        );
-
-    border:1px solid #33354e;
-
-    box-shadow:
-        inset 0 0 12px rgba(104,94,255,.08);
-}
-
-.link-name{
-    font-size:13px;
-    font-weight:bold;
-}
-
-.link-sub{
-    margin-top:4px;
-    font-size:9px;
-    color:#666b76;
-}
-
-.arrow{
-    margin-left:auto;
-
-    color:#7770ff;
+    border:1px solid rgba(139,92,255,.28);
 
     font-size:22px;
-    font-weight:bold;
+
+    box-shadow:
+        0 0 15px rgba(139,92,255,.08);
 }
 
-/* ================= NOTICE ================= */
+.category h3{
+    font-size:17px;
+    font-weight:900;
 
-.notice{
-    padding:22px;
+    margin-bottom:7px;
 
-    border-radius:16px;
-
-    background:#101217;
-
-    border:1px solid #20242d;
+    padding-right:35px;
 }
 
-.notice-row{
-    display:flex;
-    align-items:center;
-    gap:14px;
+.category p{
+    color:#77727f;
 
-    color:#7b808b;
     font-size:13px;
+
+    padding-right:35px;
 }
 
-.notice-icon{
-    width:39px;
-    height:39px;
+/* =========================
+   SOCIAL
+========================= */
 
+.socials{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+}
+
+.social{
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    border-radius:10px;
+    min-height:50px;
 
-    color:#7770ff;
+    border-radius:15px;
 
-    background:#17182a;
-    border:1px solid #2b2d49;
+    background:#0b0b10;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    font-size:14px;
+    font-weight:800;
+
+    transition:.2s;
 }
 
-/* ================= FOOTER ================= */
+.social:hover{
+    border-color:rgba(139,92,255,.45);
 
-footer{
-    margin-top:32px;
-    padding:25px 0 12px;
+    box-shadow:
+        0 0 20px rgba(139,92,255,.10);
 
+    transform:translateY(-2px);
+}
+
+.footer{
     text-align:center;
 
-    color:#4e535d;
+    margin-top:23px;
 
-    font-size:11px;
+    color:#5f5a67;
+
+    font-size:12px;
 }
 
-/* ================= TABLET ================= */
+/* =========================
+   MOBILE
+========================= */
 
-@media(max-width:1050px){
+@media(max-width:500px){
 
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .links{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:760px){
-
-    .topbar{
-        height:64px;
-        padding:0 20px;
-    }
-
-    .logo{
-        font-size:18px;
-    }
-
-    .layout{
-        display:block;
-    }
-
-    .sidebar{
-        display:none;
-    }
-
-    .main{
-        padding:14px;
+    .page{
+        padding:20px 12px 40px;
     }
 
     .profile{
-        padding:27px 18px;
-        min-height:300px;
+        padding:28px 15px 23px;
     }
 
-    .profile-content{
-        flex-direction:column;
-        text-align:center;
-        gap:23px;
-    }
-
-    .avatar{
-        width:125px;
-        height:125px;
-    }
-
-    .profile-info h1{
-        font-size:28px;
-    }
-
-    .username{
-        font-size:14px;
-    }
-
-    .quote{
-        font-size:14px;
+    .name{
+        font-size:27px;
     }
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+        grid-template-columns:1fr 1fr;
     }
 
-    .stat{
-        min-height:105px;
-        padding:18px;
+    .stats .stat:last-child{
+        grid-column:1 / -1;
     }
 
-    .stat-number{
-        font-size:25px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .links{
-        grid-template-columns:1fr;
-    }
-
-    .link{
-        min-height:72px;
-    }
-
-    .acc{
-        padding:22px;
-    }
 }
 
-/* ================= SMALL PHONE ================= */
+@media(max-width:350px){
 
-@media(max-width:420px){
-
-    .main{
-        padding:12px;
+    .name{
+        font-size:24px;
     }
 
-    .profile-info h1{
-        font-size:25px;
+    .category{
+        padding:17px;
     }
 
-    .stats{
-        gap:9px;
-    }
-
-    .stat{
-        padding:16px;
-    }
-
-    .stat-number{
-        font-size:23px;
-    }
-
-    .stat-label{
-        font-size:12px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<div class="background">
+    <div class="particles"></div>
+</div>
 
-    <div class="logo">
-        TOM<span>MOD</span>
+<main class="page">
+
+    <!-- LOGO -->
+
+    <div class="brand">
+        <div class="logo">
+            TOM<span>MOD</span>
+        </div>
     </div>
 
-</header>
 
+    <!-- PROFILE -->
 
-<div class="layout">
+    <section class="card profile">
 
-<aside class="sidebar">
-
-    <div class="side-title">
-        Menu
-    </div>
-
-    <nav class="nav">
-
-        <a href="#" class="active">
-            <span class="nav-icon">⌂</span>
-            Trang chủ
-        </a>
-
-        <a href="#categories">
-            <span class="nav-icon">▦</span>
-            Danh mục
-        </a>
-
-        <a href="#links">
-            <span class="nav-icon">♡</span>
-            Liên kết
-        </a>
-
-        <a href="#notice">
-            <span class="nav-icon">♢</span>
-            Thông báo
-        </a>
-
-        <a href="#profile">
-            <span class="nav-icon">♙</span>
-            Tài khoản
-        </a>
-
-    </nav>
-
-</aside>
-
-
-<main class="main">
-
-<!-- PROFILE -->
-
-<section class="profile" id="profile">
-
-    <div class="profile-content">
-
-        <div class="avatar-wrap">
+        <div class="avatar-box">
 
             <img
-                src="avatar.png"
                 class="avatar"
-                alt="TomModTaiWan"
-            >
+                src="avatar.png"
+                alt="TomModTaiWan">
 
             <span class="online"></span>
 
         </div>
 
 
-        <div class="profile-info">
+        <div class="name">
 
-            <h1>
-                TomModTaiWan
-                <span class="verified">✓</span>
-            </h1>
+            <span>TomModTaiWan</span>
 
-            <div class="username">
-                @TomModTaiWan • Online
-            </div>
-
-            <div class="quote">
-                TomModTaiWan. Xin Kính Chào Bạn.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section class="stats">
-
-    <div class="stat">
-        <div class="stat-number">89,1K</div>
-        <div class="stat-label">Người theo dõi</div>
-    </div>
-
-    <div class="stat">
-        <div class="stat-number">0</div>
-        <div class="stat-label">Đang theo dõi</div>
-    </div>
-
-    <div class="stat">
-        <div class="stat-number">76K</div>
-        <div class="stat-label">Lượt xem</div>
-    </div>
-
-    <div class="stat">
-        <div class="stat-number">●</div>
-        <div class="stat-label">Đang hoạt động</div>
-    </div>
-
-</section>
-
-
-<!-- DANH MỤC -->
-
-<section class="section" id="categories">
-
-    <div class="section-head">
-
-        <h2>Danh mục</h2>
-
-        <span>Xem tất cả →</span>
-
-    </div>
-
-
-    <div class="grid">
-
-        <div class="card">
-            <div class="card-icon">⚡</div>
-            <h3>FAKE LAG MOBILE</h3>
-            <p>Tiện ích Mobile</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon"></div>
-            <h3>MENU IOS</h3>
-            <p>Tiện ích iOS</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">▣</div>
-            <h3>MÁY ẢO</h3>
-            <p>Cloud / Virtual</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">F</div>
-            <h3>ACC CLONE FF</h3>
-            <p>Free Fire</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">⌖</div>
-            <h3>FILE ĐỊNH VỊ FREE FIRE</h3>
-            <p>File hỗ trợ</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">✦</div>
-            <h3>MOD SKIN FF</h3>
-            <p>Free Fire</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">▤</div>
-            <h3>PANEL PC</h3>
-            <p>Windows / PC</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">+</div>
-            <h3>KHÁC</h3>
-            <p>Cập nhật sau</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACC CLONE FF -->
-
-<section class="section">
-
-    <div class="acc">
-
-        <span class="acc-badge">
-            FREE FIRE
-        </span>
-
-        <h2>
-            ACC CLONE FF
-        </h2>
-
-        <p>
-            Tổng hợp ACC CLONE FF với giao diện
-            gọn gàng, thông tin rõ ràng và cập nhật
-            nhanh. Khám phá danh mục tài khoản
-            Free Fire tại đây.
-        </p>
-
-        <a href="#links" class="acc-button">
-            Xem ACC CLONE FF →
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- 5 LINK -->
-
-<section class="section" id="links">
-
-    <div class="section-head">
-
-        <h2>Liên kết của tôi</h2>
-
-        <span>Follow me</span>
-
-    </div>
-
-
-    <div class="links">
-
-
-        <a
-            class="link"
-            href="https://www.facebook.com/share/1cQg31DP2L/"
-            target="_blank"
-            rel="noopener"
-        >
-
-            <div class="link-icon">f</div>
-
-            <div>
-                <div class="link-name">Facebook</div>
-                <div class="link-sub">Theo dõi Facebook</div>
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <a
-            class="link"
-            href="https://www.tiktok.com/@tluocc_010"
-            target="_blank"
-            rel="noopener"
-        >
-
-            <div class="link-icon">♪</div>
-
-            <div>
-                <div class="link-name">TikTok</div>
-                <div class="link-sub">Follow TikTok</div>
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <a
-            class="link"
-            href="https://discord.gg/xhc"
-            target="_blank"
-            rel="noopener"
-        >
-
-            <div class="link-icon">◉</div>
-
-            <div>
-                <div class="link-name">Discord</div>
-                <div class="link-sub">Tham gia Discord</div>
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <a
-            class="link"
-            href="https://t.me/tluoc_09"
-            target="_blank"
-            rel="noopener"
-        >
-
-            <div class="link-icon">➤</div>
-
-            <div>
-                <div class="link-name">Telegram</div>
-                <div class="link-sub">Kênh Telegram</div>
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <a
-            class="link"
-            href="https://linkbio.co/8070700OwKBiF"
-            target="_blank"
-            rel="noopener"
-        >
-
-            <div class="link-icon">↗</div>
-
-            <div>
-                <div class="link-name">Link Bio</div>
-                <div class="link-sub">Tất cả liên kết</div>
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-    </div>
-
-</section>
-
-
-<!-- THÔNG BÁO -->
-
-<section class="section" id="notice">
-
-    <div class="section-head">
-
-        <h2>Thông báo hệ thống</h2>
-
-    </div>
-
-    <div class="notice">
-
-        <div class="notice-row">
-
-            <div class="notice-icon">
+            <span class="verified">
                 ✓
-            </div>
-
-            <span>
-                Hiện tại không có thông báo mới.
             </span>
 
         </div>
 
+
+        <div class="handle">
+            @TomModTaiWan • Online
+        </div>
+
+
+        <p class="bio">
+            TomModTaiWan. Xin Kính Chào Bạn.
+        </p>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="card stat">
+
+            <div class="number">
+                89,1K
+            </div>
+
+            <div class="label">
+                Người theo dõi
+            </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <div class="number">
+                0
+            </div>
+
+            <div class="label">
+                Đang theo dõi
+            </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <div class="number">
+                76K
+            </div>
+
+            <div class="label">
+                Lượt xem
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORY -->
+
+    <div class="section-title">
+
+        <h2>
+            Danh mục
+        </h2>
+
+        <span>
+            5 kho riêng
+        </span>
+
     </div>
 
-</section>
+
+    <section class="categories">
 
 
-<footer>
-    © 2026 TomModTaiWan • All Rights Reserved
-</footer>
+        <!-- ACC CLONE FF -->
 
+        <a
+            class="card category"
+            href="acc-clone-ff.html">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h3>
+                ACC CLONE FF
+            </h3>
+
+            <p>
+                Kho tài khoản Clone Free Fire
+            </p>
+
+        </a>
+
+
+        <!-- FAKE LAG MOBILE -->
+
+        <a
+            class="card category"
+            href="fake-lag-mobile.html">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>
+                FAKE LAG MOBILE
+            </h3>
+
+            <p>
+                Kho tiện ích Mobile
+            </p>
+
+        </a>
+
+
+        <!-- MENU IOS -->
+
+        <a
+            class="card category"
+            href="menu-ios.html">
+
+            <div class="icon">
+                🍎
+            </div>
+
+            <h3>
+                MENU IOS
+            </h3>
+
+            <p>
+                Kho sản phẩm Menu iOS
+            </p>
+
+        </a>
+
+
+        <!-- FILE ĐỊNH VỊ FF -->
+
+        <a
+            class="card category"
+            href="file-dinh-vi-ff.html">
+
+            <div class="icon">
+                🎯
+            </div>
+
+            <h3>
+                FILE ĐỊNH VỊ FF
+            </h3>
+
+            <p>
+                Kho file định vị Free Fire
+            </p>
+
+        </a>
+
+
+        <!-- MOD SKIN FF -->
+
+        <a
+            class="card category"
+            href="mod-skin-ff.html">
+
+            <div class="icon">
+                🔥
+            </div>
+
+            <h3>
+                MOD SKIN FF
+            </h3>
+
+            <p>
+                Kho Mod Skin Free Fire
+            </p>
+
+        </a>
+
+    </section>
+
+
+    <!-- SOCIAL -->
+
+    <div class="section-title">
+
+        <h2>
+            Liên kết
+        </h2>
+
+        <span>
+            TomModTaiWan
+        </span>
+
+    </div>
+
+
+    <section class="socials">
+
+        <a
+            class="social"
+            href="https://www.facebook.com/share/1cQg31DP2L/"
+            target="_blank"
+            rel="noopener">
+            Facebook
+        </a>
+
+
+        <a
+            class="social"
+            href="https://www.tiktok.com/@tluocc_010"
+            target="_blank"
+            rel="noopener">
+            TikTok
+        </a>
+
+
+        <a
+            class="social"
+            href="https://discord.gg/xhc"
+            target="_blank"
+            rel="noopener">
+            Discord
+        </a>
+
+
+        <a
+            class="social"
+            href="https://t.me/tluoc_09"
+            target="_blank"
+            rel="noopener">
+            Telegram
+        </a>
+
+
+        <a
+            class="social"
+            href="https://linkbio.co/8070700OwKBiF"
+            target="_blank"
+            rel="noopener">
+            Link Bio
+        </a>
+
+    </section>
+
+
+    <div class="footer">
+        © TomModTaiWan
+    </div>
 
 </main>
 
-</div>
-
 </body>
-    </html>
+                </html>
