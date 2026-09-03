@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+<meta name="theme-color" content="#020810">
 <title>TomModTaiWan</title>
 
 <style>
@@ -24,86 +24,114 @@ body{
     overflow-x:hidden;
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-    background:#050505;
+    background:#02060b;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== NEON BLUE BACKGROUND ===== */
 
 .bg{
     position:fixed;
     inset:0;
-    z-index:-10;
     overflow:hidden;
+    z-index:-10;
     background:
         radial-gradient(
-            circle at 50% 20%,
-            rgba(255,0,55,.13),
+            circle at 50% 18%,
+            rgba(0,170,255,.30),
             transparent 28%
+        ),
+        radial-gradient(
+            circle at 5% 55%,
+            rgba(0,90,255,.22),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 95% 80%,
+            rgba(0,255,255,.18),
+            transparent 30%
         ),
         linear-gradient(
             135deg,
-            #020202 0%,
-            #090909 50%,
-            #030303 100%
+            #010409,
+            #03101c 48%,
+            #010409
         );
 }
 
-.bg::before,
+.bg::before{
+    content:"";
+    position:absolute;
+    width:360px;
+    height:360px;
+    top:-130px;
+    left:-120px;
+    border-radius:50%;
+    background:#008cff;
+    filter:blur(100px);
+    opacity:.30;
+    animation:floatOne 8s ease-in-out infinite alternate;
+}
+
 .bg::after{
     content:"";
     position:absolute;
+    width:390px;
+    height:390px;
+    right:-150px;
+    bottom:-150px;
     border-radius:50%;
-    filter:blur(80px);
-    opacity:.35;
-    animation:moveGlow 9s ease-in-out infinite alternate;
+    background:#00eaff;
+    filter:blur(110px);
+    opacity:.22;
+    animation:floatTwo 10s ease-in-out infinite alternate;
 }
 
-.bg::before{
-    width:260px;
-    height:260px;
-    background:#ff003c;
-    top:-80px;
-    left:-100px;
-}
-
-.bg::after{
-    width:300px;
-    height:300px;
-    background:#6d003d;
-    right:-130px;
-    bottom:-100px;
-    animation-delay:-4s;
-}
-
-@keyframes moveGlow{
+@keyframes floatOne{
     from{
         transform:translate(0,0) scale(1);
     }
     to{
-        transform:translate(45px,35px) scale(1.2);
+        transform:translate(55px,70px) scale(1.18);
     }
 }
 
-/* floating particles */
+@keyframes floatTwo{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(-60px,-45px) scale(1.2);
+    }
+}
+
+/* ===== PARTICLES ===== */
 
 .particles{
     position:absolute;
     inset:0;
-    opacity:.3;
+    opacity:.38;
     background-image:
-        radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px),
-        radial-gradient(circle,rgba(255,0,60,.7) 1px,transparent 1px);
-    background-size:90px 90px,140px 140px;
-    background-position:20px 10px,70px 50px;
-    animation:stars 20s linear infinite;
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.85) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle,
+            rgba(0,200,255,.9) 1px,
+            transparent 1px
+        );
+    background-size:85px 85px,125px 125px;
+    background-position:15px 20px,55px 70px;
+    animation:particlesMove 18s linear infinite;
 }
 
-@keyframes stars{
+@keyframes particlesMove{
     from{
         transform:translateY(0);
     }
     to{
-        transform:translateY(-90px);
+        transform:translateY(-85px);
     }
 }
 
@@ -113,7 +141,7 @@ body{
     min-height:100vh;
     display:flex;
     justify-content:center;
-    padding:48px 18px 45px;
+    padding:50px 18px 45px;
 }
 
 .card{
@@ -127,7 +155,7 @@ body{
     position:relative;
     width:112px;
     height:112px;
-    margin:0 auto 22px;
+    margin:0 auto 23px;
 }
 
 .avatar-wrap::before{
@@ -137,23 +165,28 @@ body{
     border-radius:50%;
     background:conic-gradient(
         from 0deg,
-        #fff,
-        #ff174f,
-        #ff003c,
-        #8b0030,
-        #fff
+        #ffffff,
+        #00eaff,
+        #008cff,
+        #0055ff,
+        #ffffff
     );
+    box-shadow:
+        0 0 15px rgba(0,210,255,.9),
+        0 0 40px rgba(0,130,255,.65);
     animation:spin 5s linear infinite;
 }
 
 .avatar-wrap::after{
     content:"";
     position:absolute;
-    inset:-11px;
+    inset:-13px;
     border-radius:50%;
-    border:1px solid rgba(255,0,60,.28);
-    box-shadow:0 0 30px rgba(255,0,60,.28);
-    animation:pulseRing 2.5s ease-in-out infinite;
+    border:1px solid rgba(0,220,255,.45);
+    box-shadow:
+        0 0 25px rgba(0,200,255,.55),
+        0 0 55px rgba(0,100,255,.3);
+    animation:ringPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes spin{
@@ -162,13 +195,13 @@ body{
     }
 }
 
-@keyframes pulseRing{
+@keyframes ringPulse{
     0%,100%{
         transform:scale(1);
         opacity:.45;
     }
     50%{
-        transform:scale(1.06);
+        transform:scale(1.08);
         opacity:1;
     }
 }
@@ -181,7 +214,7 @@ body{
     display:block;
     object-fit:cover;
     border-radius:50%;
-    border:3px solid #070707;
+    border:3px solid #02060b;
 }
 
 /* ===== NAME ===== */
@@ -190,13 +223,14 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:7px;
+    gap:8px;
     font-size:31px;
     line-height:1.1;
     font-weight:800;
     letter-spacing:-1.2px;
     text-shadow:
-        0 2px 10px rgba(0,0,0,.9);
+        0 0 8px rgba(255,255,255,.25),
+        0 3px 12px rgba(0,0,0,.9);
 }
 
 .verified{
@@ -207,14 +241,15 @@ body{
     align-items:center;
     justify-content:center;
     border-radius:50%;
-    background:#168df5;
+    background:#168cff;
+    color:#fff;
     box-shadow:
-        0 0 10px rgba(22,141,245,.55);
+        0 0 10px rgba(0,160,255,.9),
+        0 0 20px rgba(0,120,255,.45);
 }
 
 .verified::before{
     content:"✓";
-    color:#fff;
     font-size:15px;
     font-weight:900;
 }
@@ -222,10 +257,10 @@ body{
 /* ===== BIO ===== */
 
 .bio{
-    margin:12px 0 27px;
-    color:rgba(255,255,255,.7);
+    margin:13px 0 28px;
+    color:rgba(220,245,255,.85);
     font-size:15px;
-    letter-spacing:.2px;
+    text-shadow:0 0 8px rgba(0,170,255,.25);
 }
 
 /* ===== LINKS ===== */
@@ -233,12 +268,12 @@ body{
 .links{
     display:flex;
     flex-direction:column;
-    gap:11px;
+    gap:12px;
 }
 
 .link{
     position:relative;
-    height:53px;
+    height:54px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -247,23 +282,24 @@ body{
     color:#fff;
     text-decoration:none;
 
-    border:1px solid rgba(255,255,255,.13);
-    border-radius:15px;
+    border:1px solid rgba(0,210,255,.55);
+    border-radius:16px;
 
     background:
         linear-gradient(
-            110deg,
-            rgba(255,255,255,.055),
-            rgba(255,0,55,.08),
-            rgba(255,255,255,.025)
+            105deg,
+            rgba(0,100,180,.18),
+            rgba(0,220,255,.08),
+            rgba(0,70,150,.20)
         );
 
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.3),
-        inset 0 1px rgba(255,255,255,.07);
+        0 8px 28px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.08),
+        0 0 14px rgba(0,170,255,.13);
 
     font-size:16px;
     font-weight:700;
@@ -280,23 +316,24 @@ body{
     position:absolute;
     top:0;
     left:-120%;
-    width:70%;
+    width:65%;
     height:100%;
     transform:skewX(-25deg);
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.16),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.20),
+            transparent
+        );
     transition:left .55s ease;
 }
 
 .link:hover{
-    border-color:rgba(255,0,60,.6);
+    border-color:#00d9ff;
     box-shadow:
-        0 0 22px rgba(255,0,60,.2),
-        inset 0 1px rgba(255,255,255,.1);
+        0 0 20px rgba(0,200,255,.32),
+        inset 0 1px rgba(255,255,255,.12);
 }
 
 .link:hover::before{
@@ -304,23 +341,31 @@ body{
 }
 
 .link:active{
-    transform:scale(.965);
-    border-color:#ff174f;
-    background:rgba(255,0,55,.13);
+    transform:scale(.96);
+    border-color:#00eaff;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(0,130,255,.28),
+            rgba(0,230,255,.15),
+            rgba(0,100,255,.25)
+        );
     box-shadow:
-        0 0 28px rgba(255,0,60,.35),
-        inset 0 0 18px rgba(255,0,60,.08);
+        0 0 30px rgba(0,220,255,.55),
+        inset 0 0 20px rgba(0,180,255,.12);
 }
 
-/* ===== SMALL RED LINE ===== */
+/* ===== BOTTOM NEON ===== */
 
 .line{
-    width:42px;
+    width:45px;
     height:2px;
-    margin:24px auto 0;
+    margin:25px auto 0;
     border-radius:20px;
-    background:#ff174f;
-    box-shadow:0 0 12px #ff174f;
+    background:#00d9ff;
+    box-shadow:
+        0 0 8px #00d9ff,
+        0 0 18px #008cff;
     animation:linePulse 2s ease-in-out infinite;
 }
 
@@ -330,7 +375,7 @@ body{
         opacity:.45;
     }
     50%{
-        width:55px;
+        width:60px;
         opacity:1;
     }
 }
@@ -340,7 +385,7 @@ body{
 @media(max-width:390px){
 
     .page{
-        padding-top:42px;
+        padding-top:43px;
     }
 
     .avatar-wrap,
@@ -365,7 +410,7 @@ body{
 
     .bio{
         font-size:14px;
-        margin-bottom:24px;
+        margin-bottom:25px;
     }
 
     .link{
@@ -384,66 +429,66 @@ body{
 </div>
 
 <main class="page">
-    <section class="card">
+<section class="card">
 
-        <div class="avatar-wrap">
-            <img
-                class="avatar"
-                src="avatar.png"
-                alt="TomModTaiWan">
-        </div>
+    <div class="avatar-wrap">
+        <img
+            class="avatar"
+            src="avatar.png"
+            alt="TomModTaiWan">
+    </div>
 
-        <h1 class="name">
-            <span>TomModTaiWan</span>
-            <span class="verified"></span>
-        </h1>
+    <h1 class="name">
+        <span>TomModTaiWan</span>
+        <span class="verified"></span>
+    </h1>
 
-        <p class="bio">
-            TomModTaiWan. Xin Kính Chào Bạn.
-        </p>
+    <p class="bio">
+        TomModTaiWan. Xin Kính Chào Bạn.
+    </p>
 
-        <div class="links">
+    <div class="links">
 
-            <a class="link"
-               href="https://www.facebook.com/share/1cQg31DP2L/"
-               target="_blank"
-               rel="noopener">
-                Facebook
-            </a>
+        <a class="link"
+           href="https://www.facebook.com/share/1cQg31DP2L/"
+           target="_blank"
+           rel="noopener">
+           Facebook
+        </a>
 
-            <a class="link"
-               href="https://www.tiktok.com/@tluocc_010"
-               target="_blank"
-               rel="noopener">
-                TikTok
-            </a>
+        <a class="link"
+           href="https://www.tiktok.com/@tluocc_010"
+           target="_blank"
+           rel="noopener">
+           TikTok
+        </a>
 
-            <a class="link"
-               href="https://discord.gg/xhc"
-               target="_blank"
-               rel="noopener">
-                Discord
-            </a>
+        <a class="link"
+           href="https://discord.gg/xhc"
+           target="_blank"
+           rel="noopener">
+           Discord
+        </a>
 
-            <a class="link"
-               href="https://t.me/tluoc_09"
-               target="_blank"
-               rel="noopener">
-                Telegram
-            </a>
+        <a class="link"
+           href="https://t.me/tluoc_09"
+           target="_blank"
+           rel="noopener">
+           Telegram
+        </a>
 
-            <a class="link"
-               href="https://linkbio.co/8070700OwKBiF"
-               target="_blank"
-               rel="noopener">
-                Link Bio
-            </a>
+        <a class="link"
+           href="https://linkbio.co/8070700OwKBiF"
+           target="_blank"
+           rel="noopener">
+           Link Bio
+        </a>
 
-        </div>
+    </div>
 
-        <div class="line"></div>
+    <div class="line"></div>
 
-    </section>
+</section>
 </main>
 
 <audio id="music" loop preload="auto">
@@ -455,14 +500,14 @@ const music = document.getElementById("music");
 
 music.volume = 0.55;
 
-window.addEventListener("load", () => {
-    music.play().catch(() => {});
+window.addEventListener("load",()=>{
+    music.play().catch(()=>{});
 });
 
 document.addEventListener(
     "pointerdown",
-    () => {
-        music.play().catch(() => {});
+    ()=>{
+        music.play().catch(()=>{});
     },
     {once:true}
 );
