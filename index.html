@@ -13,124 +13,112 @@
 }
 
 :root{
-    --bg:#03070d;
-    --panel:rgba(8,18,30,.82);
-    --panel2:rgba(10,25,40,.72);
-    --line:rgba(0,174,255,.25);
-    --blue:#00b7ff;
-    --blue2:#0077ff;
-    --text:#f4f8ff;
-    --muted:#8295a8;
+    --bg:#08090d;
+    --bg2:#0b0d12;
+    --card:#101217;
+    --card2:#0d0f14;
+    --border:#20242d;
+    --border2:#292d38;
+
+    --purple:#756cff;
+    --purple2:#6258e8;
+    --blue:#318cff;
+
+    --white:#f5f5f7;
+    --text:#e8e9ed;
+    --muted:#777c88;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
     color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
     background:
-        radial-gradient(circle at 50% 0%,rgba(0,130,255,.18),transparent 35%),
-        radial-gradient(circle at 0% 60%,rgba(0,90,255,.10),transparent 30%),
-        #03070d;
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(88,78,210,.13),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 100% 45%,
+            rgba(55,72,170,.06),
+            transparent 30%
+        ),
+        var(--bg);
     overflow-x:hidden;
 }
 
-body:before{
+/* subtle background */
+body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    opacity:.25;
-    background-image:
-        linear-gradient(rgba(0,170,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,170,255,.035) 1px,transparent 1px);
-    background-size:45px 45px;
+    background:
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(89,78,220,.035),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(60,70,160,.025),
+            transparent 25%
+        );
 }
 
-/* TOP */
+/* ================= TOP ================= */
+
 .topbar{
-    height:68px;
-    padding:0 22px;
+    height:72px;
+    padding:0 28px;
     display:flex;
     align-items:center;
-    gap:18px;
+    background:rgba(7,8,11,.96);
+    border-bottom:1px solid #181b22;
     position:sticky;
     top:0;
-    z-index:20;
-    background:rgba(2,7,13,.86);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
+    z-index:100;
 }
 
 .logo{
-    font-size:20px;
+    font-size:21px;
     font-weight:900;
     letter-spacing:1px;
-    white-space:nowrap;
 }
 
 .logo span{
-    color:var(--blue);
+    color:#4e8cff;
 }
 
-.search{
-    flex:1;
-    max-width:540px;
-    margin:auto;
-}
+/* không còn nút đăng nhập */
 
-.search input{
-    width:100%;
-    height:40px;
-    padding:0 18px;
-    color:white;
-    outline:none;
-    border:1px solid rgba(0,180,255,.25);
-    border-radius:12px;
-    background:rgba(10,22,35,.75);
-}
+/* ================= LAYOUT ================= */
 
-.search input::placeholder{
-    color:#687d91;
-}
-
-.top-right{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.lang,.login{
-    padding:10px 14px;
-    border:1px solid rgba(0,180,255,.25);
-    border-radius:10px;
-    background:rgba(10,22,35,.7);
-    color:#dcecff;
-    font-size:13px;
-}
-
-.login{
-    color:white;
-    border-color:rgba(0,183,255,.55);
-}
-
-/* LAYOUT */
 .layout{
     display:grid;
-    grid-template-columns:225px 1fr;
-    min-height:calc(100vh - 68px);
+    grid-template-columns:230px minmax(0,1fr);
+    min-height:calc(100vh - 72px);
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar{
-    padding:22px 14px;
-    border-right:1px solid var(--line);
-    background:rgba(2,8,14,.75);
+    padding:25px 15px;
+    background:#090a0e;
+    border-right:1px solid #181b22;
 }
 
 .side-title{
-    padding:10px 12px;
-    color:#536a7d;
-    font-size:11px;
+    padding:10px 13px;
+    margin-bottom:8px;
+    color:#555b67;
+    font-size:10px;
+    font-weight:bold;
     text-transform:uppercase;
     letter-spacing:2px;
 }
@@ -138,66 +126,89 @@ body:before{
 .nav{
     display:flex;
     flex-direction:column;
-    gap:7px;
+    gap:5px;
 }
 
 .nav a{
     text-decoration:none;
-    color:#91a5b8;
-    padding:13px 14px;
-    border-radius:11px;
+    color:#858a95;
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:13px;
+    padding:13px 14px;
+    border-radius:10px;
     font-size:14px;
     transition:.25s;
 }
 
-.nav a:hover,
+.nav a:hover{
+    color:#fff;
+    background:#11131a;
+}
+
 .nav a.active{
-    color:white;
-    background:linear-gradient(90deg,rgba(0,157,255,.2),rgba(0,157,255,.04));
-    box-shadow:inset 3px 0 var(--blue),0 0 18px rgba(0,160,255,.08);
+    color:#fff;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(103,93,235,.16),
+            rgba(103,93,235,.035)
+        );
+    border:1px solid rgba(111,102,238,.16);
 }
 
 .nav-icon{
     width:20px;
     text-align:center;
-    color:var(--blue);
+    color:#7770ff;
+    font-size:17px;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 .main{
     width:100%;
-    max-width:1450px;
+    max-width:1350px;
     margin:auto;
     padding:28px;
 }
 
-/* PROFILE */
+/* ================= PROFILE ================= */
+
 .profile{
     position:relative;
     overflow:hidden;
-    min-height:250px;
-    padding:30px;
-    border:1px solid var(--line);
-    border-radius:20px;
+    min-height:255px;
+    padding:35px;
+    border-radius:22px;
+    border:1px solid #252a34;
+
     background:
-        radial-gradient(circle at 80% 20%,rgba(0,165,255,.16),transparent 30%),
-        linear-gradient(135deg,rgba(10,27,43,.95),rgba(4,10,17,.92));
-    box-shadow:0 0 35px rgba(0,130,255,.08);
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(92,82,220,.10),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #101319,
+            #0b0d11
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
 }
 
-.profile:after{
+.profile::after{
     content:"";
     position:absolute;
     width:300px;
     height:300px;
-    right:-100px;
-    bottom:-180px;
+    right:-160px;
+    bottom:-190px;
+    background:rgba(91,82,220,.08);
+    filter:blur(80px);
     border-radius:50%;
-    background:rgba(0,174,255,.13);
-    filter:blur(55px);
 }
 
 .profile-content{
@@ -205,118 +216,165 @@ body:before{
     z-index:2;
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:27px;
 }
+
+/* avatar */
 
 .avatar-wrap{
     position:relative;
+    flex-shrink:0;
 }
 
 .avatar{
-    width:120px;
-    height:120px;
-    border-radius:50%;
+    width:125px;
+    height:125px;
     object-fit:cover;
-    border:3px solid #0dbbff;
-    padding:4px;
-    background:#06111c;
+    border-radius:50%;
+
+    padding:5px;
+
+    border:3px solid #7168ff;
+
+    background:#090a0e;
+
     box-shadow:
-        0 0 15px #00aaff,
-        0 0 45px rgba(0,160,255,.45);
+        0 0 0 4px #151721,
+        0 0 20px rgba(105,95,255,.55),
+        0 0 45px rgba(82,73,220,.20);
 }
 
 .online{
     position:absolute;
-    right:7px;
-    bottom:10px;
-    width:17px;
-    height:17px;
+    right:3px;
+    bottom:6px;
+
+    width:21px;
+    height:21px;
+
     border-radius:50%;
-    background:#19e47d;
-    border:3px solid #06111c;
-    box-shadow:0 0 12px #19e47d;
+
+    background:#22df83;
+
+    border:4px solid #101217;
+
+    box-shadow:
+        0 0 10px rgba(34,223,131,.55);
 }
 
+/* profile text */
+
 .profile-info h1{
-    font-size:34px;
+    font-size:35px;
     line-height:1;
-    margin-bottom:10px;
+    color:#f5f5f7;
+    margin-bottom:13px;
 }
 
 .verified{
     display:inline-flex;
-    width:20px;
-    height:20px;
+    width:21px;
+    height:21px;
+
     align-items:center;
     justify-content:center;
+
     margin-left:7px;
+
     border-radius:50%;
-    background:#168cff;
-    font-size:12px;
+
+    background:#318cff;
+    color:#fff;
+
+    font-size:13px;
     vertical-align:middle;
-    box-shadow:0 0 12px rgba(0,145,255,.7);
+
+    box-shadow:
+        0 0 12px rgba(49,140,255,.35);
 }
 
 .username{
-    color:var(--blue);
-    font-size:13px;
+    color:#6f8dff;
+    font-size:15px;
     margin-bottom:14px;
 }
 
 .quote{
-    color:#aebdca;
-    font-size:14px;
+    color:#999da8;
+    font-size:15px;
 }
 
-/* STATS */
+/* ================= STATS ================= */
+
 .stats{
     margin-top:20px;
+
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:14px;
+    gap:15px;
 }
 
 .stat{
-    padding:20px;
-    border:1px solid rgba(0,180,255,.19);
-    border-radius:15px;
-    background:var(--panel);
+    min-height:112px;
+    padding:21px 25px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101217,
+            #0c0e13
+        );
+
+    border:1px solid #20252e;
+
+    transition:.25s;
+}
+
+.stat:hover{
+    border-color:#303547;
+    transform:translateY(-2px);
 }
 
 .stat-number{
-    font-size:24px;
+    font-size:27px;
     font-weight:900;
-    color:white;
+    color:#f4f4f6;
 }
 
 .stat-label{
-    margin-top:6px;
-    font-size:12px;
-    color:var(--muted);
+    margin-top:8px;
+    font-size:14px;
+    color:#747985;
 }
 
-/* SECTION */
+/* ================= SECTION ================= */
+
 .section{
-    margin-top:25px;
+    margin-top:28px;
 }
 
 .section-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:14px;
+
+    margin-bottom:15px;
 }
 
 .section-head h2{
-    font-size:18px;
+    font-size:21px;
+    color:#f0f1f4;
 }
 
 .section-head span{
-    color:#617588;
-    font-size:12px;
+    color:#696f7c;
+    font-size:13px;
 }
 
-/* CATEGORIES */
+/* ================= CATEGORIES ================= */
+
 .grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -324,194 +382,290 @@ body:before{
 }
 
 .card{
-    position:relative;
-    overflow:hidden;
-    min-height:115px;
-    padding:18px;
-    border:1px solid rgba(0,180,255,.19);
-    border-radius:15px;
-    background:linear-gradient(145deg,rgba(10,26,42,.9),rgba(4,11,18,.9));
-    transition:.3s;
+    min-height:125px;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101217,
+            #0c0e12
+        );
+
+    border:1px solid #20242d;
+
+    transition:.25s;
 }
 
 .card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(0,190,255,.7);
-    box-shadow:0 0 25px rgba(0,170,255,.13);
+    transform:translateY(-3px);
+    border-color:#3a3b59;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
 }
 
 .card-icon{
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    margin-bottom:18px;
+
     border-radius:10px;
-    margin-bottom:15px;
-    color:var(--blue);
-    background:rgba(0,170,255,.1);
-    border:1px solid rgba(0,180,255,.25);
+
+    background:#151625;
+    border:1px solid #292b45;
+
+    color:#7770ff;
+
     font-size:18px;
 }
 
 .card h3{
-    font-size:13px;
+    font-size:14px;
+    color:#e5e6e9;
 }
 
 .card p{
-    margin-top:6px;
-    color:#64798b;
-    font-size:11px;
+    margin-top:7px;
+    color:#666b76;
+    font-size:12px;
 }
 
-/* ACC CLONE */
+/* ================= ACC CLONE ================= */
+
 .acc{
     position:relative;
     overflow:hidden;
-    padding:25px;
-    border-radius:18px;
-    border:1px solid rgba(0,190,255,.5);
+
+    padding:27px;
+
+    border-radius:17px;
+
     background:
-        radial-gradient(circle at 90% 20%,rgba(0,170,255,.22),transparent 35%),
-        linear-gradient(120deg,rgba(7,28,45,.98),rgba(3,10,17,.98));
-    box-shadow:0 0 30px rgba(0,150,255,.08);
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(94,83,235,.10),
+            transparent 30%
+        ),
+        #101217;
+
+    border:1px solid #292d38;
 }
 
 .acc-badge{
     display:inline-block;
+
     padding:6px 10px;
+
     border-radius:7px;
-    background:rgba(0,175,255,.12);
-    border:1px solid rgba(0,190,255,.3);
-    color:#42c8ff;
+
+    color:#8179ff;
+
+    background:#17182a;
+    border:1px solid #2c2d4b;
+
     font-size:10px;
     font-weight:bold;
     letter-spacing:1px;
 }
 
 .acc h2{
-    margin-top:13px;
+    margin-top:14px;
+
     font-size:25px;
+    color:#f3f3f5;
 }
 
 .acc p{
-    max-width:650px;
+    max-width:700px;
+
     margin-top:9px;
-    color:#8297a9;
+
+    color:#777c87;
+
     font-size:13px;
-    line-height:1.6;
+    line-height:1.7;
 }
 
 .acc-button{
     display:inline-block;
-    margin-top:18px;
+
+    margin-top:19px;
     padding:11px 18px;
-    color:white;
+
     text-decoration:none;
+
+    color:#fff;
+
     font-size:13px;
     font-weight:bold;
+
     border-radius:9px;
-    background:linear-gradient(90deg,#008cff,#00bfff);
-    box-shadow:0 0 20px rgba(0,170,255,.3);
+
+    background:
+        linear-gradient(
+            135deg,
+            #6258df,
+            #766cff
+        );
+
+    box-shadow:
+        0 5px 20px rgba(98,88,223,.20);
 }
 
-/* FIVE LINKS */
+/* ================= 5 LINKS ================= */
+
 .links{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:12px;
+    gap:13px;
 }
 
 .link{
-    position:relative;
+    min-height:76px;
+
     display:flex;
     align-items:center;
-    gap:11px;
-    padding:15px 14px;
-    color:white;
+
+    gap:12px;
+
+    padding:13px;
+
     text-decoration:none;
+    color:#fff;
+
     border-radius:14px;
-    border:1px solid rgba(0,180,255,.2);
-    background:rgba(8,20,32,.82);
-    transition:.28s;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111318,
+            #0c0e12
+        );
+
+    border:1px solid #222630;
+
+    transition:.25s;
 }
 
 .link:hover{
-    transform:translateY(-4px);
-    border-color:#00b7ff;
-    box-shadow:0 0 25px rgba(0,175,255,.22);
+    transform:translateY(-3px);
+
+    border-color:#5552a0;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.35);
 }
 
 .link-icon{
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
+
     flex-shrink:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:11px;
-    font-weight:900;
-    font-size:16px;
-    color:#fff;
-    background:linear-gradient(145deg,#007eff,#00bfff);
-    box-shadow:0 0 15px rgba(0,170,255,.2);
+
+    color:#eee;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1c2a,
+            #11121a
+        );
+
+    border:1px solid #33354e;
+
+    box-shadow:
+        inset 0 0 12px rgba(104,94,255,.08);
 }
 
 .link-name{
-    font-size:12px;
+    font-size:13px;
     font-weight:bold;
 }
 
 .link-sub{
     margin-top:4px;
     font-size:9px;
-    color:#687e91;
+    color:#666b76;
 }
 
 .arrow{
     margin-left:auto;
-    color:#00b7ff;
-    font-size:20px;
+
+    color:#7770ff;
+
+    font-size:22px;
+    font-weight:bold;
 }
 
-/* NOTIFICATION */
+/* ================= NOTICE ================= */
+
 .notice{
     padding:22px;
-    border:1px solid rgba(0,180,255,.17);
-    border-radius:15px;
-    background:var(--panel);
+
+    border-radius:16px;
+
+    background:#101217;
+
+    border:1px solid #20242d;
 }
 
 .notice-row{
     display:flex;
     align-items:center;
     gap:14px;
-    color:#7c90a2;
+
+    color:#7b808b;
     font-size:13px;
 }
 
 .notice-icon{
-    width:38px;
-    height:38px;
+    width:39px;
+    height:39px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:10px;
-    color:#00b7ff;
-    background:rgba(0,180,255,.1);
+
+    color:#7770ff;
+
+    background:#17182a;
+    border:1px solid #2b2d49;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
-    margin-top:30px;
-    padding:25px 0 10px;
+    margin-top:32px;
+    padding:25px 0 12px;
+
     text-align:center;
-    color:#506273;
+
+    color:#4e535d;
+
     font-size:11px;
 }
 
-/* MOBILE */
+/* ================= TABLET ================= */
+
 @media(max-width:1050px){
+
     .grid{
         grid-template-columns:repeat(2,1fr);
     }
@@ -521,22 +675,17 @@ footer{
     }
 }
 
+/* ================= MOBILE ================= */
+
 @media(max-width:760px){
+
     .topbar{
-        padding:0 12px;
-        gap:8px;
+        height:64px;
+        padding:0 20px;
     }
 
     .logo{
-        font-size:15px;
-    }
-
-    .search{
-        display:none;
-    }
-
-    .lang{
-        display:none;
+        font-size:18px;
     }
 
     .layout{
@@ -552,42 +701,74 @@ footer{
     }
 
     .profile{
-        padding:22px 18px;
+        padding:27px 18px;
+        min-height:300px;
     }
 
     .profile-content{
         flex-direction:column;
         text-align:center;
+        gap:23px;
+    }
+
+    .avatar{
+        width:125px;
+        height:125px;
     }
 
     .profile-info h1{
-        font-size:26px;
+        font-size:28px;
+    }
+
+    .username{
+        font-size:14px;
+    }
+
+    .quote{
+        font-size:14px;
     }
 
     .stats{
         grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .stat{
+        min-height:105px;
+        padding:18px;
+    }
+
+    .stat-number{
+        font-size:25px;
     }
 
     .grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:1fr;
     }
 
     .links{
         grid-template-columns:1fr;
     }
 
-    .acc h2{
-        font-size:21px;
+    .link{
+        min-height:72px;
+    }
+
+    .acc{
+        padding:22px;
     }
 }
 
+/* ================= SMALL PHONE ================= */
+
 @media(max-width:420px){
-    .grid{
-        grid-template-columns:1fr;
+
+    .main{
+        padding:12px;
     }
 
-    .profile{
-        border-radius:16px;
+    .profile-info h1{
+        font-size:25px;
     }
 
     .stats{
@@ -595,7 +776,15 @@ footer{
     }
 
     .stat{
-        padding:15px;
+        padding:16px;
+    }
+
+    .stat-number{
+        font-size:23px;
+    }
+
+    .stat-label{
+        font-size:12px;
     }
 }
 </style>
@@ -604,25 +793,24 @@ footer{
 <body>
 
 <header class="topbar">
-    <div class="logo">TOM<span>MOD</span></div>
 
-    <div class="search">
-        <input type="text" placeholder="Tìm kiếm...">
+    <div class="logo">
+        TOM<span>MOD</span>
     </div>
 
-    <div class="top-right">
-        <div class="lang">VI ▾</div>
-        <div class="login">Đăng nhập</div>
-    </div>
 </header>
+
 
 <div class="layout">
 
 <aside class="sidebar">
 
-    <div class="side-title">Menu</div>
+    <div class="side-title">
+        Menu
+    </div>
 
     <nav class="nav">
+
         <a href="#" class="active">
             <span class="nav-icon">⌂</span>
             Trang chủ
@@ -635,7 +823,7 @@ footer{
 
         <a href="#links">
             <span class="nav-icon">♡</span>
-            Yêu thích
+            Liên kết
         </a>
 
         <a href="#notice">
@@ -647,54 +835,71 @@ footer{
             <span class="nav-icon">♙</span>
             Tài khoản
         </a>
+
     </nav>
 
 </aside>
 
+
 <main class="main">
 
 <!-- PROFILE -->
+
 <section class="profile" id="profile">
 
     <div class="profile-content">
 
         <div class="avatar-wrap">
-            <img src="avatar.png" class="avatar" alt="TomModTaiWan">
+
+            <img
+                src="avatar.png"
+                class="avatar"
+                alt="TomModTaiWan"
+            >
+
             <span class="online"></span>
+
         </div>
 
+
         <div class="profile-info">
+
             <h1>
                 TomModTaiWan
                 <span class="verified">✓</span>
             </h1>
 
-            <div class="username">@TomModTaiWan • Online</div>
+            <div class="username">
+                @TomModTaiWan • Online
+            </div>
 
             <div class="quote">
                 TomModTaiWan. Xin Kính Chào Bạn.
             </div>
+
         </div>
 
     </div>
 
 </section>
 
+
 <!-- STATS -->
+
 <section class="stats">
 
     <div class="stat">
-        <div class="stat-number">1.2K</div>
+        <div class="stat-number">89,1K</div>
         <div class="stat-label">Người theo dõi</div>
     </div>
 
     <div class="stat">
-        <div class="stat-number">128</div>
+        <div class="stat-number">0</div>
         <div class="stat-label">Đang theo dõi</div>
     </div>
 
     <div class="stat">
-        <div class="stat-number">8.5K</div>
+        <div class="stat-number">76K</div>
         <div class="stat-label">Lượt xem</div>
     </div>
 
@@ -705,13 +910,19 @@ footer{
 
 </section>
 
-<!-- CATEGORIES -->
+
+<!-- DANH MỤC -->
+
 <section class="section" id="categories">
 
     <div class="section-head">
+
         <h2>Danh mục</h2>
+
         <span>Xem tất cả →</span>
+
     </div>
+
 
     <div class="grid">
 
@@ -734,7 +945,7 @@ footer{
         </div>
 
         <div class="card">
-            <div class="card-icon">♙</div>
+            <div class="card-icon">F</div>
             <h3>ACC CLONE FF</h3>
             <p>Free Fire</p>
         </div>
@@ -758,7 +969,7 @@ footer{
         </div>
 
         <div class="card">
-            <div class="card-icon">＋</div>
+            <div class="card-icon">+</div>
             <h3>KHÁC</h3>
             <p>Cập nhật sau</p>
         </div>
@@ -767,19 +978,26 @@ footer{
 
 </section>
 
+
 <!-- ACC CLONE FF -->
+
 <section class="section">
 
     <div class="acc">
 
-        <span class="acc-badge">FREE FIRE</span>
+        <span class="acc-badge">
+            FREE FIRE
+        </span>
 
-        <h2>ACC CLONE FF</h2>
+        <h2>
+            ACC CLONE FF
+        </h2>
 
         <p>
-            Tổng hợp ACC CLONE FF với giao diện gọn gàng,
-            thông tin rõ ràng và cập nhật nhanh.
-            Khám phá danh mục tài khoản Free Fire tại đây.
+            Tổng hợp ACC CLONE FF với giao diện
+            gọn gàng, thông tin rõ ràng và cập nhật
+            nhanh. Khám phá danh mục tài khoản
+            Free Fire tại đây.
         </p>
 
         <a href="#links" class="acc-button">
@@ -790,19 +1008,29 @@ footer{
 
 </section>
 
-<!-- 5 LINKS -->
+
+<!-- 5 LINK -->
+
 <section class="section" id="links">
 
     <div class="section-head">
+
         <h2>Liên kết của tôi</h2>
+
         <span>Follow me</span>
+
     </div>
+
 
     <div class="links">
 
-        <a class="link"
-           href="https://www.facebook.com/share/1cQg31DP2L/"
-           target="_blank">
+
+        <a
+            class="link"
+            href="https://www.facebook.com/share/1cQg31DP2L/"
+            target="_blank"
+            rel="noopener"
+        >
 
             <div class="link-icon">f</div>
 
@@ -812,12 +1040,16 @@ footer{
             </div>
 
             <div class="arrow">›</div>
+
         </a>
 
 
-        <a class="link"
-           href="https://www.tiktok.com/@tluocc_010"
-           target="_blank">
+        <a
+            class="link"
+            href="https://www.tiktok.com/@tluocc_010"
+            target="_blank"
+            rel="noopener"
+        >
 
             <div class="link-icon">♪</div>
 
@@ -827,12 +1059,16 @@ footer{
             </div>
 
             <div class="arrow">›</div>
+
         </a>
 
 
-        <a class="link"
-           href="https://discord.gg/xhc"
-           target="_blank">
+        <a
+            class="link"
+            href="https://discord.gg/xhc"
+            target="_blank"
+            rel="noopener"
+        >
 
             <div class="link-icon">◉</div>
 
@@ -842,12 +1078,16 @@ footer{
             </div>
 
             <div class="arrow">›</div>
+
         </a>
 
 
-        <a class="link"
-           href="https://t.me/tluoc_09"
-           target="_blank">
+        <a
+            class="link"
+            href="https://t.me/tluoc_09"
+            target="_blank"
+            rel="noopener"
+        >
 
             <div class="link-icon">➤</div>
 
@@ -857,12 +1097,16 @@ footer{
             </div>
 
             <div class="arrow">›</div>
+
         </a>
 
 
-        <a class="link"
-           href="https://linkbio.co/8070700OwKBiF"
-           target="_blank">
+        <a
+            class="link"
+            href="https://linkbio.co/8070700OwKBiF"
+            target="_blank"
+            rel="noopener"
+        >
 
             <div class="link-icon">↗</div>
 
@@ -872,35 +1116,51 @@ footer{
             </div>
 
             <div class="arrow">›</div>
+
         </a>
+
 
     </div>
 
 </section>
 
-<!-- NOTICE -->
+
+<!-- THÔNG BÁO -->
+
 <section class="section" id="notice">
 
     <div class="section-head">
+
         <h2>Thông báo hệ thống</h2>
+
     </div>
 
     <div class="notice">
 
         <div class="notice-row">
-            <div class="notice-icon">✓</div>
-            <span>Hiện tại không có thông báo mới.</span>
+
+            <div class="notice-icon">
+                ✓
+            </div>
+
+            <span>
+                Hiện tại không có thông báo mới.
+            </span>
+
         </div>
 
     </div>
 
 </section>
 
+
 <footer>
     © 2026 TomModTaiWan • All Rights Reserved
 </footer>
 
+
 </main>
+
 </div>
 
 </body>
