@@ -3,367 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050507">
-
-<title>Kho ACC CLONE FF - TomModTaiWan</title>
+<title>Clone FF LV5 LV8</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html,body{
-    min-height:100%;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
+    background:#050008;
     color:#fff;
-    background:#050507;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(139,92,255,.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(181,108,255,.13),
-            transparent 30%
-        ),
-        linear-gradient(
-            145deg,
-            #020203,
-            #09070e,
-            #030304
-        );
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-
-    opacity:.16;
-
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.8) 1px,
-            transparent 1px
-        );
-
-    background-size:100px 100px;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
 .container{
     width:100%;
-    max-width:720px;
-    margin:auto;
-    padding:20px 14px 45px;
+    max-width:430px;
+    padding:24px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#0b0012,#17001f);
+    border:1px solid #a000ff;
+    box-shadow:0 0 28px #8b00ff55;
 }
 
-/* HEADER */
-
 .header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:18px;
+    text-align:center;
+    margin-bottom:24px;
 }
 
 .logo{
-    font-size:21px;
-    font-weight:900;
-}
-
-.logo span{
-    color:#9b61ff;
-
-    text-shadow:
-        0 0 8px rgba(155,97,255,.8),
-        0 0 22px rgba(155,97,255,.35);
-}
-
-.back{
-    padding:10px 14px;
-
-    border-radius:13px;
-
-    border:1px solid rgba(139,92,255,.28);
-
-    background:rgba(15,13,21,.9);
-
-    color:#cfc7dd;
-
-    font-size:13px;
-    font-weight:800;
-
-    transition:.2s;
-}
-
-.back:hover{
-    border-color:#985cff;
-
-    box-shadow:
-        0 0 20px rgba(139,92,255,.15);
-}
-
-/* HERO */
-
-.hero{
-    padding:23px;
-
-    border-radius:23px;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,16,25,.96),
-            rgba(7,7,10,.96)
-        );
-
-    box-shadow:
-        0 15px 55px rgba(0,0,0,.5);
-}
-
-.small-title{
-    color:#a36aff;
-
-    font-size:11px;
-    font-weight:900;
-
-    letter-spacing:2px;
-
-    margin-bottom:9px;
-}
-
-.hero h1{
-    font-size:29px;
-    font-weight:900;
-
-    margin-bottom:8px;
-}
-
-.hero p{
-    color:#817b8b;
-
-    font-size:14px;
-
-    line-height:1.55;
-}
-
-/* SEARCH */
-
-.search{
-    width:100%;
-    height:50px;
-
-    margin-top:18px;
-
-    padding:0 16px;
-
-    border-radius:15px;
-
-    outline:none;
-
-    border:1px solid rgba(139,92,255,.22);
-
-    background:#08080c;
-
-    color:#fff;
-
-    font-size:14px;
-}
-
-.search::placeholder{
-    color:#625d6b;
-}
-
-.search:focus{
-    border-color:#975cff;
-
-    box-shadow:
-        0 0 18px rgba(139,92,255,.10);
-}
-
-/* PRODUCTS */
-
-.products{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
     display:flex;
-    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:#09000d;
+    border:2px solid #c000ff;
+    box-shadow:0 0 22px #a000ff;
+    font-size:23px;
+    font-weight:bold;
+    color:#d000ff;
+}
 
-    gap:12px;
-
+h1{
     margin-top:15px;
+    font-size:24px;
+    color:#d000ff;
+    text-shadow:0 0 12px #a000ff;
+}
+
+.subtitle{
+    margin-top:7px;
+    color:#999;
+    font-size:13px;
+}
+
+.status{
+    text-align:center;
+    padding:13px;
+    margin-bottom:15px;
+    border-radius:13px;
+    background:#09000e;
+    border:1px solid #5d0085;
+    color:#aaa;
+}
+
+.status span{
+    color:#c000ff;
+    font-weight:bold;
 }
 
 .product{
-    padding:19px;
-
-    border-radius:20px;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(16,15,22,.96),
-            rgba(8,8,11,.96)
-        );
-
-    transition:
-        transform .2s,
-        border-color .2s,
-        box-shadow .2s;
-}
-
-.product:hover{
-    transform:translateY(-3px);
-
-    border-color:rgba(148,87,255,.45);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.55),
-        0 0 25px rgba(139,92,255,.10);
-}
-
-.product-top{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:10px;
-}
-
-.id{
-    color:#a66aff;
-
-    font-size:11px;
-    font-weight:900;
-
-    padding:6px 9px;
-
-    border-radius:9px;
-
-    background:rgba(139,92,255,.10);
-
-    border:1px solid rgba(139,92,255,.22);
-}
-
-.stock{
-    color:#39df8b;
-
-    font-size:11px;
-    font-weight:900;
+    padding:18px;
+    border-radius:15px;
+    background:#08000d;
+    border:1px solid #6500a0;
+    text-align:center;
 }
 
 .product h2{
-    font-size:18px;
-
-    margin-top:13px;
-    margin-bottom:7px;
-}
-
-.info{
-    color:#7d7886;
-
-    font-size:13px;
-
-    line-height:1.65;
+    color:#d000ff;
+    font-size:20px;
+    text-shadow:0 0 10px #a000ff;
 }
 
 .price{
-    margin-top:13px;
-
-    font-size:22px;
-
-    font-weight:900;
+    margin-top:12px;
+    font-size:28px;
+    font-weight:bold;
+    color:#fff;
+    text-shadow:0 0 12px #c000ff;
 }
 
-.buy{
-    display:block;
-
-    margin-top:14px;
-
-    padding:12px;
-
-    text-align:center;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7442e8,
-            #a65cff
-        );
-
-    box-shadow:
-        0 8px 25px rgba(139,92,255,.18);
-
+.price small{
     font-size:14px;
-
-    font-weight:900;
-
-    transition:.2s;
+    color:#aaa;
 }
 
-.buy:hover{
-    transform:translateY(-1px);
+.option{
+    margin-top:12px;
+    padding:15px;
+    border-radius:14px;
+    background:#08000d;
+    border:1px solid #43005f;
+}
 
-    box-shadow:
-        0 10px 30px rgba(139,92,255,.30);
+.option label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:15px;
+}
+
+.switch{
+    position:relative;
+    width:48px;
+    height:25px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    cursor:pointer;
+    border-radius:30px;
+    background:#26002f;
+    transition:.3s;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    width:19px;
+    height:19px;
+    left:3px;
+    top:3px;
+    border-radius:50%;
+    background:#aaa;
+    transition:.3s;
+}
+
+input:checked + .slider{
+    background:#9000ff;
+    box-shadow:0 0 13px #a000ff;
+}
+
+input:checked + .slider:before{
+    transform:translateX(23px);
+    background:#fff;
+}
+
+.btn{
+    width:100%;
+    margin-top:22px;
+    padding:15px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(90deg,#7200ff,#c000ff);
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px #9d00ff66;
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.info{
+    margin-top:18px;
+    padding:13px;
+    border-radius:12px;
+    background:#0a000f;
+    border-left:3px solid #a000ff;
+    color:#aaa;
+    font-size:12px;
+    line-height:1.6;
 }
 
 .footer{
     text-align:center;
-
-    color:#575260;
-
-    font-size:12px;
-
-    margin-top:22px;
-}
-
-/* MOBILE */
-
-@media(max-width:420px){
-
-    .container{
-        padding-left:11px;
-        padding-right:11px;
-    }
-
-    .hero h1{
-        font-size:26px;
-    }
-
-    .product{
-        padding:17px;
-    }
-
+    margin-top:18px;
+    color:#666;
+    font-size:11px;
 }
 </style>
 </head>
@@ -372,363 +207,97 @@ a{
 
 <div class="container">
 
-    <!-- HEADER -->
+    <div class="header">
 
-    <header class="header">
+        <div class="logo">FF</div>
 
-        <div class="logo">
-            TOM<span>MOD</span>
+        <h1>CLONE FF LV5 LV8</h1>
+
+        <div class="subtitle">
+            Kho Acc Clone Free Fire
         </div>
 
-        <a
-            class="back"
-            href="index.html">
-            ← Trang chủ
-        </a>
+    </div>
 
-    </header>
+    <div class="status">
+        Trạng thái:
+        <span id="status">SẴN SÀNG</span>
+    </div>
 
+    <div class="product">
 
-    <!-- HERO -->
+        <h2>CLONE FF LV5 LV8</h2>
 
-    <section class="hero">
-
-        <div class="small-title">
-            KHO RIÊNG
+        <div class="price">
+            1K5 <small>/ ACC</small>
         </div>
 
-        <h1>
-            👤 ACC CLONE FF
-        </h1>
-
-        <p>
-            Kho ACC Clone Free Fire.
-            Chọn tài khoản bạn muốn mua bên dưới.
-        </p>
-
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="🔎 Tìm ACC..."
-            autocomplete="off">
-
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section
-        id="products"
-        class="products">
-
-
-        <!-- ACC 001 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 001">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #001
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #001
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                20.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-
-        <!-- ACC 002 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 002">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #002
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #002
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                30.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-
-        <!-- ACC 003 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 003">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #003
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #003
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                50.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-
-        <!-- ACC 004 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 004">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #004
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #004
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                20.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-
-        <!-- ACC 005 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 005">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #005
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #005
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                30.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-
-        <!-- ACC 006 -->
-
-        <article
-            class="product"
-            data-search="acc clone ff 006">
-
-            <div class="product-top">
-
-                <span class="id">
-                    ACC #006
-                </span>
-
-                <span class="stock">
-                    ● CÒN HÀNG
-                </span>
-
-            </div>
-
-            <h2>
-                ACC CLONE FF #006
-            </h2>
-
-            <div class="info">
-                • Tài khoản Clone Free Fire<br>
-                • Thông tin chi tiết liên hệ người bán
-            </div>
-
-            <div class="price">
-                50.000đ
-            </div>
-
-            <a
-                class="buy"
-                href="https://t.me/tluoc_09"
-                target="_blank"
-                rel="noopener">
-                MUA ACC
-            </a>
-
-        </article>
-
-    </section>
-
+    </div>
+
+    <div class="option">
+        <label>
+            Acc Level 5
+            <span class="switch">
+                <input type="checkbox" id="lv5">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <div class="option">
+        <label>
+            Acc Level 8
+            <span class="switch">
+                <input type="checkbox" id="lv8">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <div class="option">
+        <label>
+            Acc Clone
+            <span class="switch">
+                <input type="checkbox" id="clone">
+                <span class="slider"></span>
+            </span>
+        </label>
+    </div>
+
+    <button class="btn" onclick="activate()">
+        XEM KHO ACC
+    </button>
+
+    <div class="info">
+        ⚡ CLONE FF LV5 LV8<br>
+        Kho riêng dành cho Acc Clone Free Fire.<br>
+        Giá hiện tại: <b>1K5 / ACC</b>
+    </div>
 
     <div class="footer">
-        TomModTaiWan • KHO ACC CLONE FF
+        © TomModTaiWan
     </div>
 
 </div>
 
-
 <script>
+function activate(){
 
-const search =
-    document.getElementById("search");
+    const lv5 = document.getElementById("lv5").checked;
+    const lv8 = document.getElementById("lv8").checked;
+    const clone = document.getElementById("clone").checked;
 
-const products =
-    document.querySelectorAll(".product");
+    const status = document.getElementById("status");
 
-search.addEventListener(
-    "input",
-    function(){
-
-        const keyword =
-            this.value
-            .toLowerCase()
-            .trim();
-
-        products.forEach(
-            function(product){
-
-                const text =
-                    product
-                    .dataset
-                    .search
-                    .toLowerCase();
-
-                if(text.includes(keyword)){
-
-                    product.style.display =
-                        "block";
-
-                }else{
-
-                    product.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
+    if(lv5 || lv8 || clone){
+        status.innerText = "ĐÃ CHỌN";
+        status.style.color = "#d000ff";
+    }else{
+        status.innerText = "SẴN SÀNG";
+        status.style.color = "#c000ff";
     }
-);
-
+}
 </script>
 
 </body>
-                  </html>
+    </html>
