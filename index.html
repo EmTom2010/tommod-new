@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#020810">
+<meta name="theme-color" content="#020814">
 <title>TomModTaiWan</title>
 
 <style>
@@ -24,172 +24,198 @@ body{
     overflow-x:hidden;
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-    background:#02060b;
+    background:#020814;
 }
 
-/* ===== NEON BLUE BACKGROUND ===== */
+/* =========================
+   NEON BACKGROUND
+========================= */
 
-.bg{
+.background{
     position:fixed;
     inset:0;
-    overflow:hidden;
     z-index:-10;
+    overflow:hidden;
+
     background:
         radial-gradient(
-            circle at 50% 18%,
-            rgba(0,170,255,.30),
-            transparent 28%
+            circle at 50% 16%,
+            rgba(0,190,255,.30),
+            transparent 27%
         ),
         radial-gradient(
-            circle at 5% 55%,
-            rgba(0,90,255,.22),
+            circle at 0% 65%,
+            rgba(0,90,255,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 100% 85%,
+            rgba(0,255,255,.20),
             transparent 32%
         ),
-        radial-gradient(
-            circle at 95% 80%,
-            rgba(0,255,255,.18),
-            transparent 30%
-        ),
         linear-gradient(
-            135deg,
-            #010409,
-            #03101c 48%,
-            #010409
+            145deg,
+            #01050b 0%,
+            #031426 48%,
+            #01050b 100%
         );
 }
 
-.bg::before{
+.background::before{
+    content:"";
+    position:absolute;
+    width:330px;
+    height:330px;
+    left:-120px;
+    top:-90px;
+    border-radius:50%;
+    background:#008cff;
+    filter:blur(95px);
+    opacity:.34;
+    animation:glowMove1 8s ease-in-out infinite alternate;
+}
+
+.background::after{
     content:"";
     position:absolute;
     width:360px;
     height:360px;
-    top:-130px;
-    left:-120px;
-    border-radius:50%;
-    background:#008cff;
-    filter:blur(100px);
-    opacity:.30;
-    animation:floatOne 8s ease-in-out infinite alternate;
-}
-
-.bg::after{
-    content:"";
-    position:absolute;
-    width:390px;
-    height:390px;
-    right:-150px;
-    bottom:-150px;
+    right:-140px;
+    bottom:-120px;
     border-radius:50%;
     background:#00eaff;
-    filter:blur(110px);
-    opacity:.22;
-    animation:floatTwo 10s ease-in-out infinite alternate;
+    filter:blur(105px);
+    opacity:.25;
+    animation:glowMove2 10s ease-in-out infinite alternate;
 }
 
-@keyframes floatOne{
+@keyframes glowMove1{
     from{
         transform:translate(0,0) scale(1);
     }
     to{
-        transform:translate(55px,70px) scale(1.18);
+        transform:translate(80px,100px) scale(1.2);
     }
 }
 
-@keyframes floatTwo{
+@keyframes glowMove2{
     from{
         transform:translate(0,0) scale(1);
     }
     to{
-        transform:translate(-60px,-45px) scale(1.2);
+        transform:translate(-80px,-60px) scale(1.2);
     }
 }
 
-/* ===== PARTICLES ===== */
+/* =========================
+   PARTICLES
+========================= */
 
 .particles{
     position:absolute;
     inset:0;
     opacity:.38;
+
     background-image:
         radial-gradient(
             circle,
-            rgba(255,255,255,.85) 1px,
+            rgba(255,255,255,.9) 1px,
             transparent 1px
         ),
         radial-gradient(
             circle,
-            rgba(0,200,255,.9) 1px,
+            rgba(0,220,255,.8) 1px,
             transparent 1px
         );
-    background-size:85px 85px,125px 125px;
-    background-position:15px 20px,55px 70px;
-    animation:particlesMove 18s linear infinite;
+
+    background-size:
+        85px 85px,
+        130px 130px;
+
+    background-position:
+        10px 20px,
+        60px 70px;
+
+    animation:particleMove 18s linear infinite;
 }
 
-@keyframes particlesMove{
+@keyframes particleMove{
     from{
         transform:translateY(0);
     }
+
     to{
         transform:translateY(-85px);
     }
 }
 
-/* ===== PAGE ===== */
+/* =========================
+   PAGE
+========================= */
 
 .page{
     min-height:100vh;
     display:flex;
     justify-content:center;
-    padding:50px 18px 45px;
+    padding:48px 16px 50px;
 }
 
 .card{
-    width:min(390px,100%);
+    width:min(400px,100%);
     text-align:center;
 }
 
-/* ===== AVATAR ===== */
+/* =========================
+   AVATAR
+========================= */
 
-.avatar-wrap{
+.avatar-box{
     position:relative;
-    width:112px;
-    height:112px;
-    margin:0 auto 23px;
+    width:116px;
+    height:116px;
+    margin:0 auto 25px;
 }
 
-.avatar-wrap::before{
+.avatar-box::before{
     content:"";
     position:absolute;
     inset:-5px;
     border-radius:50%;
-    background:conic-gradient(
-        from 0deg,
-        #ffffff,
-        #00eaff,
-        #008cff,
-        #0055ff,
-        #ffffff
-    );
+
+    background:
+        conic-gradient(
+            from 0deg,
+            #ffffff,
+            #00eaff,
+            #008cff,
+            #004cff,
+            #00eaff,
+            #ffffff
+        );
+
     box-shadow:
-        0 0 15px rgba(0,210,255,.9),
-        0 0 40px rgba(0,130,255,.65);
-    animation:spin 5s linear infinite;
+        0 0 15px rgba(0,220,255,.9),
+        0 0 38px rgba(0,120,255,.7);
+
+    animation:avatarSpin 5s linear infinite;
 }
 
-.avatar-wrap::after{
+.avatar-box::after{
     content:"";
     position:absolute;
     inset:-13px;
     border-radius:50%;
+
     border:1px solid rgba(0,220,255,.45);
+
     box-shadow:
-        0 0 25px rgba(0,200,255,.55),
-        0 0 55px rgba(0,100,255,.3);
+        0 0 25px rgba(0,220,255,.45),
+        0 0 60px rgba(0,100,255,.25);
+
     animation:ringPulse 2.5s ease-in-out infinite;
 }
 
-@keyframes spin{
+@keyframes avatarSpin{
     to{
         transform:rotate(360deg);
     }
@@ -200,6 +226,7 @@ body{
         transform:scale(1);
         opacity:.45;
     }
+
     50%{
         transform:scale(1.08);
         opacity:1;
@@ -209,178 +236,311 @@ body{
 .avatar{
     position:relative;
     z-index:2;
-    width:112px;
-    height:112px;
+
+    width:116px;
+    height:116px;
+
     display:block;
     object-fit:cover;
+
     border-radius:50%;
-    border:3px solid #02060b;
+    border:3px solid #020814;
 }
 
-/* ===== NAME ===== */
+/* =========================
+   NAME
+========================= */
 
 .name{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:8px;
+
     font-size:31px;
     line-height:1.1;
     font-weight:800;
-    letter-spacing:-1.2px;
+    letter-spacing:-1px;
+
     text-shadow:
         0 0 8px rgba(255,255,255,.25),
-        0 3px 12px rgba(0,0,0,.9);
+        0 3px 15px rgba(0,0,0,.9);
 }
 
 .verified{
-    width:23px;
-    height:23px;
-    flex:0 0 23px;
+    width:24px;
+    height:24px;
+    flex:0 0 24px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
+
     background:#168cff;
-    color:#fff;
+
     box-shadow:
-        0 0 10px rgba(0,160,255,.9),
-        0 0 20px rgba(0,120,255,.45);
+        0 0 10px rgba(0,170,255,.9),
+        0 0 22px rgba(0,110,255,.55);
 }
 
 .verified::before{
     content:"✓";
+    color:#fff;
     font-size:15px;
     font-weight:900;
 }
 
-/* ===== BIO ===== */
+/* =========================
+   BIO
+========================= */
 
 .bio{
-    margin:13px 0 28px;
-    color:rgba(220,245,255,.85);
+    margin:13px 0 29px;
+
+    color:rgba(225,248,255,.88);
+
     font-size:15px;
-    text-shadow:0 0 8px rgba(0,170,255,.25);
+
+    text-shadow:
+        0 0 9px rgba(0,180,255,.25);
 }
 
-/* ===== LINKS ===== */
+/* =========================
+   PREMIUM LINKS
+========================= */
 
 .links{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:13px;
 }
 
 .link{
     position:relative;
-    height:54px;
+
+    height:60px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
 
     color:#fff;
     text-decoration:none;
 
-    border:1px solid rgba(0,210,255,.55);
-    border-radius:16px;
+    border:1px solid rgba(0,225,255,.7);
+    border-radius:18px;
 
     background:
         linear-gradient(
-            105deg,
-            rgba(0,100,180,.18),
-            rgba(0,220,255,.08),
-            rgba(0,70,150,.20)
+            110deg,
+            rgba(0,70,150,.48),
+            rgba(0,190,255,.16),
+            rgba(0,65,140,.48)
         );
 
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
     box-shadow:
-        0 8px 28px rgba(0,0,0,.35),
-        inset 0 1px rgba(255,255,255,.08),
-        0 0 14px rgba(0,170,255,.13);
+        0 8px 25px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.15),
+        inset 0 0 22px rgba(0,200,255,.10),
+        0 0 16px rgba(0,190,255,.28);
 
-    font-size:16px;
-    font-weight:700;
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.2px;
 
     transition:
         transform .2s ease,
-        border-color .2s ease,
         box-shadow .2s ease,
+        border-color .2s ease,
         background .2s ease;
 }
 
+/* =========================
+   ICON
+========================= */
+
+.link .icon{
+    position:absolute;
+    left:16px;
+
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,230,255,.42),
+            rgba(0,80,255,.28)
+        );
+
+    border:1px solid rgba(0,235,255,.65);
+
+    box-shadow:
+        0 0 12px rgba(0,210,255,.35),
+        inset 0 0 10px rgba(255,255,255,.08);
+
+    font-size:17px;
+    font-weight:900;
+
+    z-index:3;
+}
+
+/* =========================
+   MOVING LIGHT
+========================= */
+
 .link::before{
     content:"";
+
     position:absolute;
-    top:0;
-    left:-120%;
-    width:65%;
-    height:100%;
+
+    top:-30%;
+    left:-100%;
+
+    width:60%;
+    height:160%;
+
     transform:skewX(-25deg);
+
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.20),
+            rgba(255,255,255,.32),
+            rgba(0,235,255,.28),
             transparent
         );
-    transition:left .55s ease;
-}
 
-.link:hover{
-    border-color:#00d9ff;
-    box-shadow:
-        0 0 20px rgba(0,200,255,.32),
-        inset 0 1px rgba(255,255,255,.12);
+    transition:left .65s ease;
 }
 
 .link:hover::before{
     left:150%;
 }
 
-.link:active{
-    transform:scale(.96);
-    border-color:#00eaff;
+/* =========================
+   LINK HOVER
+========================= */
+
+.link:hover{
+    transform:translateY(-3px);
+
+    border-color:#00efff;
+
     background:
         linear-gradient(
-            105deg,
-            rgba(0,130,255,.28),
-            rgba(0,230,255,.15),
-            rgba(0,100,255,.25)
+            110deg,
+            rgba(0,110,220,.55),
+            rgba(0,225,255,.23),
+            rgba(0,100,210,.55)
         );
+
     box-shadow:
-        0 0 30px rgba(0,220,255,.55),
-        inset 0 0 20px rgba(0,180,255,.12);
+        0 12px 30px rgba(0,0,0,.5),
+        0 0 22px rgba(0,220,255,.55),
+        0 0 50px rgba(0,130,255,.20),
+        inset 0 0 24px rgba(0,220,255,.12);
 }
 
-/* ===== BOTTOM NEON ===== */
+/* =========================
+   TAP EFFECT
+========================= */
+
+.link:active{
+    transform:scale(.94);
+
+    border-color:#ffffff;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(0,130,255,.65),
+            rgba(0,245,255,.30),
+            rgba(0,110,255,.60)
+        );
+
+    box-shadow:
+        0 0 25px rgba(0,230,255,.9),
+        0 0 55px rgba(0,120,255,.55),
+        inset 0 0 25px rgba(255,255,255,.12);
+}
+
+/* =========================
+   INDIVIDUAL COLORS
+========================= */
+
+.link:nth-child(1){
+    border-color:rgba(40,160,255,.8);
+}
+
+.link:nth-child(2){
+    border-color:rgba(0,235,255,.8);
+}
+
+.link:nth-child(3){
+    border-color:rgba(80,150,255,.8);
+}
+
+.link:nth-child(4){
+    border-color:rgba(0,255,240,.8);
+}
+
+.link:nth-child(5){
+    border-color:rgba(70,125,255,.8);
+}
+
+/* =========================
+   BOTTOM LINE
+========================= */
 
 .line{
-    width:45px;
-    height:2px;
-    margin:25px auto 0;
+    width:52px;
+    height:3px;
+
+    margin:26px auto 0;
+
     border-radius:20px;
-    background:#00d9ff;
+
+    background:#00eaff;
+
     box-shadow:
-        0 0 8px #00d9ff,
-        0 0 18px #008cff;
-    animation:linePulse 2s ease-in-out infinite;
+        0 0 8px #00eaff,
+        0 0 20px #008cff,
+        0 0 35px rgba(0,180,255,.55);
+
+    animation:lineGlow 2s ease-in-out infinite;
 }
 
-@keyframes linePulse{
+@keyframes lineGlow{
     0%,100%{
-        width:30px;
-        opacity:.45;
+        width:35px;
+        opacity:.5;
     }
+
     50%{
-        width:60px;
+        width:70px;
         opacity:1;
     }
 }
 
-/* ===== MOBILE ===== */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:390px){
 
@@ -388,10 +548,10 @@ body{
         padding-top:43px;
     }
 
-    .avatar-wrap,
+    .avatar-box,
     .avatar{
-        width:104px;
-        height:104px;
+        width:105px;
+        height:105px;
     }
 
     .name{
@@ -414,9 +574,15 @@ body{
     }
 
     .link{
-        height:51px;
-        border-radius:14px;
-        font-size:15px;
+        height:57px;
+        border-radius:16px;
+        font-size:16px;
+    }
+
+    .link .icon{
+        left:14px;
+        width:32px;
+        height:32px;
     }
 }
 </style>
@@ -424,14 +590,15 @@ body{
 
 <body>
 
-<div class="bg">
+<div class="background">
     <div class="particles"></div>
 </div>
 
 <main class="page">
+
 <section class="card">
 
-    <div class="avatar-wrap">
+    <div class="avatar-box">
         <img
             class="avatar"
             src="avatar.png"
@@ -449,39 +616,49 @@ body{
 
     <div class="links">
 
-        <a class="link"
-           href="https://www.facebook.com/share/1cQg31DP2L/"
-           target="_blank"
-           rel="noopener">
-           Facebook
+        <a
+            class="link"
+            href="https://www.facebook.com/share/1cQg31DP2L/"
+            target="_blank"
+            rel="noopener">
+            <span class="icon">f</span>
+            Facebook
         </a>
 
-        <a class="link"
-           href="https://www.tiktok.com/@tluocc_010"
-           target="_blank"
-           rel="noopener">
-           TikTok
+        <a
+            class="link"
+            href="https://www.tiktok.com/@tluocc_010"
+            target="_blank"
+            rel="noopener">
+            <span class="icon">♪</span>
+            TikTok
         </a>
 
-        <a class="link"
-           href="https://discord.gg/xhc"
-           target="_blank"
-           rel="noopener">
-           Discord
+        <a
+            class="link"
+            href="https://discord.gg/xhc"
+            target="_blank"
+            rel="noopener">
+            <span class="icon">◆</span>
+            Discord
         </a>
 
-        <a class="link"
-           href="https://t.me/tluoc_09"
-           target="_blank"
-           rel="noopener">
-           Telegram
+        <a
+            class="link"
+            href="https://t.me/tluoc_09"
+            target="_blank"
+            rel="noopener">
+            <span class="icon">➤</span>
+            Telegram
         </a>
 
-        <a class="link"
-           href="https://linkbio.co/8070700OwKBiF"
-           target="_blank"
-           rel="noopener">
-           Link Bio
+        <a
+            class="link"
+            href="https://linkbio.co/8070700OwKBiF"
+            target="_blank"
+            rel="noopener">
+            <span class="icon">↗</span>
+            Link Bio
         </a>
 
     </div>
@@ -489,6 +666,7 @@ body{
     <div class="line"></div>
 
 </section>
+
 </main>
 
 <audio id="music" loop preload="auto">
