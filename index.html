@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07030a">
+<title>TomModTaiWan</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    background:#050208;
+    overflow-x:hidden;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-10;
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255,25,60,.30),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 15% 75%,
+            rgba(255,0,70,.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(120,0,255,.20),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #050208,
+            #19030d 45%,
+            #050208
+        );
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    left:50%;
+    top:42%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(255,40,80,.22);
+    box-shadow:
+        0 0 80px rgba(255,0,55,.15),
+        inset 0 0 80px rgba(255,0,55,.12);
+    animation:rotate 18s linear infinite;
+}
+
+.background::after{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    left:50%;
+    top:42%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:
+        0 0 80px rgba(255,0,60,.20);
+    animation:rotateReverse 13s linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+@keyframes rotateReverse{
+    from{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+    to{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+}
+
+/* GLOWING LIGHTS */
+
+.light{
+    position:absolute;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    filter:blur(65px);
+    opacity:.38;
+    animation:float 9s ease-in-out infinite;
+}
+
+.light.one{
+    background:#ff003c;
+    left:-100px;
+    top:15%;
+}
+
+.light.two{
+    background:#7900ff;
+    right:-120px;
+    top:48%;
+    animation-delay:-3s;
+}
+
+.light.three{
+    background:#ff164f;
+    left:25%;
+    bottom:-170px;
+    animation-delay:-6s;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translate(0,0) scale(1);
+    }
+    50%{
+        transform:translate(30px,-35px) scale(1.15);
+    }
+}
+
+/* PARTICLES */
+
+.particles{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.65) 1px,transparent 1px),
+        radial-gradient(circle,rgba(255,0,70,.45) 1px,transparent 1px);
+    background-size:75px 75px,115px 115px;
+    background-position:0 0,35px 50px;
+    opacity:.18;
+    animation:particlesMove 18s linear infinite;
+}
+
+@keyframes particlesMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-75px);
+    }
+}
+
+/* DARK GLASS */
+
+.dark{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.18),
+            rgba(0,0,0,.48)
+        );
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:55px 18px 45px;
+}
+
+.card{
+    width:min(430px,100%);
+    text-align:center;
+}
+
+/* =========================
+   AVATAR
+========================= */
+
+.avatar-ring{
+    width:138px;
+    height:138px;
+    margin:0 auto 20px;
+    padding:4px;
+    border-radius:50%;
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ff315d,
+            #ff003c,
+            #fff
+        );
+    box-shadow:
+        0 0 12px rgba(255,255,255,.55),
+        0 0 30px rgba(255,0,60,.55);
+    animation:avatarGlow 3s ease-in-out infinite;
+}
+
+@keyframes avatarGlow{
+    0%,100%{
+        box-shadow:
+            0 0 12px rgba(255,255,255,.55),
+            0 0 30px rgba(255,0,60,.55);
+    }
+    50%{
+        box-shadow:
+            0 0 20px rgba(255,255,255,.85),
+            0 0 45px rgba(255,0,60,.75);
+    }
+}
+
+.avatar{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:50%;
+    background:#111;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.name{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:-1px;
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.9);
+}
+
+.verified{
+    width:28px;
+    height:28px;
+    flex:0 0 28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#2196f3;
+    color:#fff;
+    font-size:18px;
+    font-weight:900;
+    box-shadow:
+        0 0 10px rgba(33,150,243,.75);
+}
+
+.verified::before{
+    content:"✓";
+}
+
+/* =========================
+   BIO
+========================= */
+
+.bio{
+    margin:13px auto 28px;
+    font-size:17px;
+    line-height:1.5;
+    color:rgba(255,255,255,.92);
+    text-shadow:0 2px 8px #000;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.links{
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+}
+
+.link{
+    position:relative;
+    min-height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+
+    border:1px solid rgba(255,60,100,.8);
+    border-radius:19px;
+
+    color:#fff;
+    text-decoration:none;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(255,0,60,.17),
+            rgba(80,10,50,.55),
+            rgba(255,0,60,.13)
+        );
+
+    backdrop-filter:blur(13px);
+    -webkit-backdrop-filter:blur(13px);
+
+    font-size:17px;
+    font-weight:750;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.30),
+        inset 0 0 20px rgba(255,255,255,.035),
+        0 0 14px rgba(255,0,65,.20);
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+.link::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:70%;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.16),
+            transparent
+        );
+    transform:skewX(-20deg);
+    transition:left .5s ease;
+}
+
+.link:hover::before{
+    left:140%;
+}
+
+.link:active{
+    transform:scale(.96);
+    border-color:#ff5277;
+    background:
+        linear-gradient(
+            100deg,
+            rgba(255,0,65,.30),
+            rgba(100,10,60,.68),
+            rgba(255,0,65,.24)
+        );
+    box-shadow:
+        0 0 25px rgba(255,0,65,.55),
+        inset 0 0 20px rgba(255,255,255,.08);
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-status{
+    margin:22px auto 0;
+    display:flex;
+    width:max-content;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:30px;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(10px);
+    font-size:12px;
+    color:rgba(255,255,255,.68);
+}
+
+.music-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#ff315d;
+    box-shadow:0 0 10px #ff315d;
+    animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:.45;
+        transform:scale(.8);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.15);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:390px){
+
+    .page{
+        padding-top:40px;
+    }
+
+    .avatar-ring{
+        width:124px;
+        height:124px;
+        margin-bottom:17px;
+    }
+
+    .name{
+        font-size:30px;
+    }
+
+    .verified{
+        width:25px;
+        height:25px;
+        flex-basis:25px;
+        font-size:16px;
+    }
+
+    .bio{
+        font-size:15px;
+        margin-top:11px;
+        margin-bottom:24px;
+    }
+
+    .link{
+        min-height:54px;
+        font-size:16px;
+        border-radius:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="background">
+    <div class="light one"></div>
+    <div class="light two"></div>
+    <div class="light three"></div>
+    <div class="particles"></div>
+    <div class="dark"></div>
+</div>
+
+<main class="page">
+
+    <section class="card">
+
+        <!-- AVATAR -->
+        <div class="avatar-ring">
+            <img
+                class="avatar"
+                src="avatar.png"
+                alt="TomModTaiWan">
+        </div>
+
+        <!-- NAME -->
+        <h1 class="name">
+            <span>TomModTaiWan</span>
+            <span class="verified"></span>
+        </h1>
+
+        <!-- BIO -->
+        <p class="bio">
+            TomModTaiWan. Xin Kính Chào Bạn.
+        </p>
+
+        <!-- LINKS -->
+        <div class="links">
+
+            <a
+                class="link"
+                href="https://www.facebook.com/share/1cQg31DP2L/"
+                target="_blank"
+                rel="noopener">
+                Facebook
+            </a>
+
+            <a
+                class="link"
+                href="https://www.tiktok.com/@tluocc_010"
+                target="_blank"
+                rel="noopener">
+                TikTok
+            </a>
+
+            <a
+                class="link"
+                href="https://discord.gg/xhc"
+                target="_blank"
+                rel="noopener">
+                Discord
+            </a>
+
+            <a
+                class="link"
+                href="https://t.me/tluoc_09"
+                target="_blank"
+                rel="noopener">
+                Telegram
+            </a>
+
+            <a
+                class="link"
+                href="https://linkbio.co/8070700OwKBiF"
+                target="_blank"
+                rel="noopener">
+                Link Bio
+            </a>
+
+        </div>
+
+        <!-- MUSIC STATUS -->
+        <div class="music-status">
+            <span class="music-dot"></span>
+            <span>Music playing</span>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- MUSIC -->
+<audio id="music" loop preload="auto">
+    <source src="tiktok_mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("music");
+
+music.volume = 0.6;
+
+window.addEventListener("load", () => {
+    music.play().catch(() => {});
+});
+
+document.addEventListener(
+    "pointerdown",
+    () => {
+        music.play().catch(() => {});
+    },
+    {once:true}
+);
+</script>
+
+</body>
+  </html>
