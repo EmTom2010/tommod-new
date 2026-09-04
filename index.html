@@ -1,241 +1,568 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TomModTaiWan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  <title>TomModTaiWan</title>
 
-body {
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    background:
-        radial-gradient(circle at top, #3b075f 0%, #120019 35%, #030005 75%);
-    display: flex;
-    justify-content: center;
-    padding: 35px 15px;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.container {
-    width: 100%;
-    max-width: 430px;
-    text-align: center;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(140, 0, 255, 0.25), transparent 35%),
+        linear-gradient(135deg, #030006, #100018 50%, #020003);
+      color: white;
+      overflow-x: hidden;
+    }
 
-/* AVATAR */
-.avatar {
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #b000ff;
-    box-shadow:
-        0 0 12px #b000ff,
-        0 0 30px #7a00ff;
-    margin-bottom: 12px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
 
-/* TÊN */
-.name {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-shadow:
-        0 0 8px #d000ff,
-        0 0 18px #8500ff;
-}
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding: 35px 16px 50px;
+      position: relative;
+      z-index: 2;
+    }
 
-.verified {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    margin-left: 5px;
-    border-radius: 50%;
-    background: #168cff;
-    color: white;
-    font-size: 12px;
-    box-shadow: 0 0 10px #168cff;
-}
+    /* ================= PROFILE ================= */
 
-/* MÔ TẢ */
-.bio {
-    margin-top: 9px;
-    color: #dcbaff;
-    font-size: 14px;
-}
+    .profile {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
-/* KHO */
-.shop {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.shop a {
-    text-decoration: none;
-    color: white;
-    display: block;
-}
-
-.card {
-    position: relative;
-    padding: 18px 20px;
-    border: 1px solid #9b00ff;
-    border-radius: 15px;
-    background: linear-gradient(
+    .avatar-box {
+      width: 120px;
+      height: 120px;
+      margin: auto;
+      padding: 4px;
+      border-radius: 50%;
+      background: linear-gradient(
         135deg,
-        rgba(100, 0, 150, 0.30),
-        rgba(10, 0, 20, 0.88)
-    );
-    box-shadow:
-        0 0 8px rgba(170, 0, 255, 0.7),
-        inset 0 0 15px rgba(130, 0, 255, 0.08);
-    transition: 0.25s;
-}
+        #8a00ff,
+        #ff00e6,
+        #7200ff
+      );
+      box-shadow:
+        0 0 20px #9d00ff,
+        0 0 40px rgba(120,0,255,0.55);
+    }
 
-.card:hover {
-    transform: translateY(-3px);
-    border-color: #d400ff;
-    box-shadow:
-        0 0 15px #a000ff,
-        0 0 30px rgba(150, 0, 255, 0.5);
-}
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #08000d;
+      display: block;
+    }
 
-.card-title {
-    font-size: 17px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 8px #b000ff;
-}
+    .name {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow:
+        0 0 5px #ffffff,
+        0 0 12px #9d00ff;
+    }
 
-.card-desc {
-    margin-top: 6px;
-    font-size: 12px;
-    color: #c9a8dc;
-}
+    .verified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin-left: 5px;
+      border-radius: 50%;
+      background: #ff1744;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      vertical-align: middle;
+      box-shadow: 0 0 10px #ff1744;
+    }
 
-/* SOCIAL */
-.social {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
+    .bio {
+      margin-top: 8px;
+      color: #cdbed8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
 
-.social a {
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #8500ff;
-    padding: 9px 14px;
-    border-radius: 10px;
-    background: rgba(80, 0, 120, 0.25);
-    box-shadow: 0 0 8px rgba(150, 0, 255, 0.45);
-    font-size: 13px;
-    transition: 0.2s;
-}
+    /* ================= SOCIAL ================= */
 
-.social a:hover {
-    background: rgba(150, 0, 255, 0.35);
-    box-shadow: 0 0 15px #a000ff;
-}
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin: 22px 0 28px;
+    }
 
-/* FOOTER */
-.footer {
-    margin-top: 28px;
-    color: #876a99;
-    font-size: 11px;
-}
-</style>
+    .social {
+      padding: 12px 5px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      background: rgba(17,7,26,0.9);
+      border: 1px solid rgba(130,0,190,0.65);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      transition: 0.25s;
+    }
+
+    .social:hover {
+      transform: translateY(-3px);
+      border-color: #c000ff;
+      box-shadow: 0 0 18px rgba(160,0,255,0.5);
+    }
+
+    .social-icon {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+
+    /* ================= SECTION ================= */
+
+    .section-title {
+      text-align: center;
+      margin: 27px 0 14px;
+      font-size: 17px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 0 10px #9d00ff;
+    }
+
+    /* ================= MENU ================= */
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .menu a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 68px;
+      padding: 12px 15px;
+      text-decoration: none;
+      color: white;
+      background:
+        linear-gradient(
+          100deg,
+          rgba(38,7,53,0.96),
+          rgba(9,3,14,0.98)
+        );
+      border: 1px solid rgba(150,0,215,0.6);
+      border-radius: 15px;
+      box-shadow:
+        0 0 12px rgba(145,0,255,0.18),
+        inset 0 0 15px rgba(120,0,255,0.04);
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
+
+    .menu a::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(
+        #8a00ff,
+        #ff00e6
+      );
+      box-shadow: 0 0 12px #a000ff;
+    }
+
+    .menu a:hover {
+      transform: translateY(-3px) scale(1.01);
+      border-color: #c000ff;
+      box-shadow:
+        0 0 22px rgba(180,0,255,0.5),
+        inset 0 0 20px rgba(140,0,255,0.08);
+    }
+
+    .icon {
+      width: 43px;
+      height: 43px;
+      min-width: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 13px;
+      border-radius: 12px;
+      background: rgba(145,0,255,0.15);
+      border: 1px solid rgba(120,0,180,0.45);
+      font-size: 21px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .title {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .desc {
+      display: block;
+      color: #a995b5;
+      font-size: 11px;
+    }
+
+    .arrow {
+      color: #c13cff;
+      font-size: 22px;
+      margin-left: 8px;
+    }
+
+    .special {
+      border-color: rgba(255,0,220,0.65) !important;
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+      margin-top: 35px;
+      text-align: center;
+      color: #75677d;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: #b82dff;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 420px) {
+      .container {
+        padding: 28px 14px 40px;
+      }
+
+      .avatar-box {
+        width: 112px;
+        height: 112px;
+      }
+
+      .name {
+        font-size: 22px;
+      }
+
+      .menu a {
+        min-height: 64px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- AVATAR -->
-    <img src="avatar.png" class="avatar" alt="Avatar">
+  <!-- ================= PROFILE ================= -->
 
-    <!-- TÊN -->
+  <div class="profile">
+
+    <!-- ẢNH AVATAR -->
+    <div class="avatar-box">
+      <img
+        src="avatar.jpg"
+        alt="TomModTaiWan"
+        class="avatar"
+      >
+    </div>
+
     <div class="name">
-        TomModTaiWan
-        <span class="verified">✓</span>
+      𝙏𝙤𝙢𝙈𝙤𝙙𝙏𝙖𝙞𝙒𝙖𝙣
+      <span class="verified">✓</span>
     </div>
 
     <div class="bio">
-        KHO MOD • TOOL • ACC FREE FIRE
+      Mod • Tool • File • Free Fire<br>
+      Chào mừng bạn đến với trang chính thức
     </div>
 
-    <!-- CÁC KHO -->
-    <div class="shop">
+  </div>
 
-        <a href="acc-clone-ff.html">
-            <div class="card">
-                <div class="card-title">🎮 CLONE FF LV5 LV8</div>
-                <div class="card-desc">Kho acc Clone Free Fire</div>
-            </div>
-        </a>
 
-        <a href="fake-lag-mobile.html">
-            <div class="card">
-                <div class="card-title">📱 FAKE LAG MOBILE</div>
-                <div class="card-desc">Kho Fake Lag Mobile</div>
-            </div>
-        </a>
+  <!-- ================= SOCIAL ================= -->
 
-        <a href="menu-ios.html">
-            <div class="card">
-                <div class="card-title">🍎 MENU IOS</div>
-                <div class="card-desc">Kho Menu dành cho iOS</div>
-            </div>
-        </a>
+  <div class="socials">
 
-        <a href="file-dinh-vi-ff.html">
-            <div class="card">
-                <div class="card-title">📍 FILE ĐỊNH VỊ FF</div>
-                <div class="card-desc">Kho File Định Vị Free Fire</div>
-            </div>
-        </a>
+    <a
+      class="social"
+      href="https://www.facebook.com/share/18DDbdg7Tj/"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="social-icon">f</span>
+      Facebook
+    </a>
 
-        <a href="mod-skin-ff.html">
-            <div class="card">
-                <div class="card-title">🔥 MOD SKIN FF</div>
-                <div class="card-desc">Kho Mod Skin Free Fire</div>
-            </div>
-        </a>
+    <a
+      class="social"
+      href="https://tiktok.com/@tluocc_010"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="social-icon">♪</span>
+      TikTok
+    </a>
 
-    </div>
+    <a
+      class="social"
+      href="https://discord.gg/D37DAJkq"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="social-icon">◉</span>
+      Discord
+    </a>
 
-    <!-- SOCIAL -->
-    <div class="social">
-        <a href="https://www.facebook.com/share/1cQg31DP2L/" target="_blank">
-            Facebook
-        </a>
+  </div>
 
-        <a href="https://www.tiktok.com/@tluocc_010" target="_blank">
-            TikTok
-        </a>
 
-        <a href="https://discord.gg/xhc" target="_blank">
-            Discord
-        </a>
-    </div>
+  <!-- ================= LIÊN KẾT ================= -->
 
-    <div class="footer">
-        © TomModTaiWan
-    </div>
+  <div class="section-title">
+    ✦ LIÊN KẾT ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      class="special"
+      href="https://t.me/tluoc_09"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">✈</div>
+
+      <div class="info">
+        <span class="title">Telegram</span>
+        <span class="desc">
+          Kênh Telegram chính thức
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+
+    <a
+      class="special"
+      href="https://linkbio.co/8070700OwKBiF"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">🔗</div>
+
+      <div class="info">
+        <span class="title">Link Bio</span>
+        <span class="desc">
+          Tổng hợp tất cả liên kết
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= KHO ACC CLONE FF ================= -->
+
+  <div class="section-title">
+    ✦ KHO ACC CLONE FF ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      href="https://example.com/acc-clone-ff"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">🎮</div>
+
+      <div class="info">
+        <span class="title">
+          Kho Acc Clone FF
+        </span>
+
+        <span class="desc">
+          Tổng hợp tài khoản Free Fire Clone
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= FAKE LAG MOBILE ================= -->
+
+  <div class="section-title">
+    ✦ KHO FAKE LAG MOBILE ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      href="https://example.com/fake-lag-mobile"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">📱</div>
+
+      <div class="info">
+        <span class="title">
+          Kho Fake Lag Mobile
+        </span>
+
+        <span class="desc">
+          Tổng hợp file Fake Lag Mobile
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= MENU IOS ================= -->
+
+  <div class="section-title">
+    ✦ KHO MENU IOS ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      href="https://example.com/menu-ios"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">🍎</div>
+
+      <div class="info">
+        <span class="title">
+          Kho Menu iOS
+        </span>
+
+        <span class="desc">
+          Tổng hợp Menu dành cho iOS
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= FILE ĐỊNH VỊ FF ================= -->
+
+  <div class="section-title">
+    ✦ KHO FILE ĐỊNH VỊ FF ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      href="https://example.com/file-dinh-vi-ff"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">📍</div>
+
+      <div class="info">
+        <span class="title">
+          Kho File Định Vị FF
+        </span>
+
+        <span class="desc">
+          Tổng hợp file định vị Free Fire
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= MOD SKIN FF ================= -->
+
+  <div class="section-title">
+    ✦ KHO MOD SKIN FF ✦
+  </div>
+
+  <div class="menu">
+
+    <a
+      href="https://example.com/mod-skin-ff"
+      target="_blank"
+      rel="noopener"
+    >
+      <div class="icon">🎨</div>
+
+      <div class="info">
+        <span class="title">
+          Kho Mod Skin FF
+        </span>
+
+        <span class="desc">
+          Tổng hợp Mod Skin Free Fire
+        </span>
+      </div>
+
+      <div class="arrow">›</div>
+    </a>
+
+  </div>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <div class="footer">
+    © 2026 <strong>TomModTaiWan</strong><br>
+    All Rights Reserved.
+  </div>
 
 </div>
 
 </body>
-</html>
+    </html>
